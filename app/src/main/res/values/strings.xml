@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DriversOnLine</string>
+
+    <string-array name="cities">
+        <item>PUNE</item>
+        <item>MUMBAI</item>
+        <item>Banglore</item>
+    </string-array>
+</resources>
