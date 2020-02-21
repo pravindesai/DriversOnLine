@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ownerMainActivity"></activity>
         <activity android:name=".OtpActivity" />
         <activity android:name=".CombineSignUp" />
         <activity android:name=".CombineLogInPage" />

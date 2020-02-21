@@ -26,21 +26,24 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
-class user{
+/*class user{
     public String num;
     public String name;
-    public String city,type;
+    public String city;
+    public  String type;
+    public String lno;
 
     public user() {
     }
 
-    public user(String num, String name, String city,String type) {
+    public user(String num, String name, String city, String type, String lno) {
         this.num = num;
         this.name = name;
         this.city = city;
-        this.type=type;
+        this.type = type;
+        this.lno = lno;
     }
-}
+}*/
 public class OtpActivity extends AppCompatActivity {
     EditText otpEt;
     Button goBtn;
@@ -123,7 +126,7 @@ public class OtpActivity extends AppCompatActivity {
     }
 
     public void addnewUser(String num,String name,String city,String type){
-        user user=new user(num,name,city,type);
+        user user=new user(num,name,city,type,"123");
         mdb.child("user").child(num).setValue(user);
         Toast.makeText(getBaseContext(),"new user added",Toast.LENGTH_LONG).show();
         Toast.makeText(getBaseContext(),"Successful start Activity",Toast.LENGTH_LONG).show();
