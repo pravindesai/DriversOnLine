@@ -4,21 +4,25 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_car"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_car_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OtpActivity" />
-        <activity android:name=".CombineSignUp" />
-        <activity android:name=".CombineLogInPage" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".profileMainActivity"
+            android:label="@string/title_activity_profile_main"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CombineSignUp" />
+        <activity android:name=".CombineLogInPage" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

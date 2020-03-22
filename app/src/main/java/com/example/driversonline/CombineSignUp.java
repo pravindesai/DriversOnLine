@@ -36,25 +36,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
-class user{
-    public String num;
-    public String name;
-    public String city;
-    public  String type;
-    public String lno;
-
-    public user() {
-    }
-
-    public user(String num, String name, String city, String type, String lno) {
-        this.num = num;
-        this.name = name;
-        this.city = city;
-        this.type = type;
-        this.lno = lno;
-    }
-}
-
 public class CombineSignUp extends AppCompatActivity {
     EditText nameEt,phoneNumberEt,otpEt,licenseEt;
     Spinner cityspinner;
@@ -117,12 +98,13 @@ public class CombineSignUp extends AppCompatActivity {
                     nameEt.setInputType(InputType.TYPE_NULL);
                     cityspinner.setClickable(false);
                     cityspinner.setEnabled(false);
-                    licenseEt.setInputType(InputType.TYPE_NULL);
                     phoneNumberEt.setInputType(InputType.TYPE_NULL);
+                    if(type.equals("Driver"))
+                        licenseEt.setInputType(InputType.TYPE_NULL);
                     otpEt.setVisibility(View.VISIBLE);
                     verifyBtn.setVisibility(View.VISIBLE);
 
-                    //send otp[verify otp -- start new activity]
+                    //send otp[verify otp -- start  new activity]
                     sendOtp(num);
             }
         });
@@ -131,7 +113,7 @@ public class CombineSignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final String code=otpEt.getText().toString().trim();
+               final String code=otpEt.getText().toString().trim();
                if(code.isEmpty()){
                     otpEt.setError("enter code");
                     otpEt.requestFocus();
@@ -221,7 +203,6 @@ public class CombineSignUp extends AppCompatActivity {
 
                         }
                     });
-
                 }
                 else {
                     Toast.makeText(getBaseContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
@@ -235,5 +216,7 @@ public class CombineSignUp extends AppCompatActivity {
         mdb.child("user").child(type).child(num).setValue(user);
         Toast.makeText(getBaseContext(),"new user added",Toast.LENGTH_LONG).show();
         //start new activity
+        startActivity(new Intent(getBaseContext(),profileMainActivity.class));
+        finish();
     }
 }
