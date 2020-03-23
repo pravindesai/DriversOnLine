@@ -67,15 +67,7 @@ public class profileMainActivity extends AppCompatActivity {
                 R.id.nav_logout,R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
-       /* navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                if(menuItem.getItemId()==R.id.nav_logout){
-                    Toast.makeText(getBaseContext(),"LOGOUT",Toast.LENGTH_SHORT).show();
-                }
-                return false;
-            }
-        });*/
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -107,7 +99,6 @@ public class profileMainActivity extends AppCompatActivity {
         navUsername.setText(type);
 
 
-
         if(muser!=null){
             //Toast.makeText(getBaseContext(),"checking.."+muser.getPhoneNumber(),Toast.LENGTH_SHORT).show();
             //if user is driver start drivermainActivity or start ownermainActivuty
@@ -132,9 +123,6 @@ public class profileMainActivity extends AppCompatActivity {
         }else{
             Toast.makeText(getBaseContext(),"user null",Toast.LENGTH_LONG).show();
         }
-
-
-
 
     }
 
