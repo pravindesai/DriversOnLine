@@ -216,7 +216,9 @@ public class CombineSignUp extends AppCompatActivity {
         mdb.child("user").child(type).child(num).setValue(user);
         Toast.makeText(getBaseContext(),"new user added",Toast.LENGTH_LONG).show();
         //start new activity
-        startActivity(new Intent(getBaseContext(),profileMainActivity.class));
+        Intent intent=new Intent(getBaseContext(),profileMainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
         finish();
     }
 }

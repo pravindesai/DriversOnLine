@@ -1,5 +1,6 @@
 package com.example.driversonline.ui.home;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView;
@@ -37,11 +40,18 @@ public class HomeFragment extends Fragment {
     DatabaseReference db=FirebaseDatabase.getInstance().getReference();
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
     FirebaseUser muser=mAuth.getCurrentUser();
+    SharedPreferences sharedPreferences;
+    String type;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        sharedPreferences=getContext().getSharedPreferences("SHAREDPREFERECEFILE",MODE_PRIVATE);
+        final SharedPreferences.Editor editor=sharedPreferences.edit();
+        type=sharedPreferences.getString("UserType",null);
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView=root.findViewById(R.id.recyclerView);
+
         users=new ArrayList<user>();
         //getListItems();
 
@@ -58,32 +68,36 @@ public class HomeFragment extends Fragment {
         if(muser!=null){
             //Toast.makeText(getBaseContext(),"checking.."+muser.getPhoneNumber(),Toast.LENGTH_SHORT).show();
             //if user is driver start drivermainActivity or start ownermainActivuty
-            Query query= db.child("user/Driver").orderByChild("num");
 
-            query.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.exists()){
-                        Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
-                        for(DataSnapshot snap:dataSnapshot.getChildren()){
-                            users.add(snap.getValue(user.class));
-                            adapter.notifyDataSetChanged();
-                        }
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
+            if(type.equals("Driver")){
+                getListForDriver();
+            }else if(type.equals("Owner")){
+                getListForOwner();
+            }
         }
     }
 
-    public void getListItems(){
-        users.add(new user("7020529425", "pravin", "Shrirampur", "Driver", "LNO1234"));
-        users.add(new user("7020529425", "pravin", "Shrirampur", "Driver", "LNO1234"));
-        users.add(new user("7020529425", "pravin", "Shrirampur", "Driver", "LNO1234"));
-        users.add(new user("7020529425", "pravin", "Shrirampur", "Driver", "LNO1234"));
-        users.add(new user("7020529425", "pravin", "Shrirampur", "Driver", "LNO1234"));
+    public void getListForDriver(){
+        Query query= db.child("user/Driver").orderByChild("num");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    //Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
+                    for(DataSnapshot snap:dataSnapshot.getChildren()){
+                        users.add(snap.getValue(user.class));
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void getListForOwner(){
+        Toast.makeText(getContext(),"getListForOwner called..",Toast.LENGTH_SHORT).show();
     }
 }
