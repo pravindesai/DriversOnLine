@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView=root.findViewById(R.id.recyclerView);
         users=new ArrayList<user>();
-        getListItems();
+        //getListItems();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter=new Adapter(this,users);
@@ -58,14 +58,16 @@ public class HomeFragment extends Fragment {
         if(muser!=null){
             //Toast.makeText(getBaseContext(),"checking.."+muser.getPhoneNumber(),Toast.LENGTH_SHORT).show();
             //if user is driver start drivermainActivity or start ownermainActivuty
-            Query query= db.child("user/Driver");
+            Query query= db.child("user/Driver").orderByChild("num");
+
             query.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.exists()){
-
+                        Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
                         for(DataSnapshot snap:dataSnapshot.getChildren()){
                             users.add(snap.getValue(user.class));
+                            adapter.notifyDataSetChanged();
                         }
                     }
                 }
