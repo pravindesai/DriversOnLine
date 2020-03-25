@@ -78,6 +78,10 @@ public class HomeFragment extends Fragment {
     }
 
     public void getListForDriver(){
+        Toast.makeText(getContext(),"getListForDriver called..",Toast.LENGTH_SHORT).show();
+    }
+
+    public void getListForOwner(){
         Query query= db.child("user/Driver").orderByChild("num");
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -95,9 +99,5 @@ public class HomeFragment extends Fragment {
 
             }
         });
-    }
-
-    public void getListForOwner(){
-        Toast.makeText(getContext(),"getListForOwner called..",Toast.LENGTH_SHORT).show();
     }
 }
