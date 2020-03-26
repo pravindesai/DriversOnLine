@@ -34,20 +34,19 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    Adapter adapter;
-    ArrayList<user> users;
-    DatabaseReference db=FirebaseDatabase.getInstance().getReference();
-    FirebaseAuth mAuth=FirebaseAuth.getInstance();
-    FirebaseUser muser=mAuth.getCurrentUser();
-    SharedPreferences sharedPreferences;
-    String type;
+    private RecyclerView recyclerView;
+    private Adapter adapter;
+    private ArrayList<user> users;
+    private DatabaseReference db=FirebaseDatabase.getInstance().getReference();
+    private FirebaseAuth mAuth=FirebaseAuth.getInstance();
+    private FirebaseUser muser=mAuth.getCurrentUser();
+    private String type;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        sharedPreferences=getContext().getSharedPreferences("SHAREDPREFERECEFILE",MODE_PRIVATE);
-        final SharedPreferences.Editor editor=sharedPreferences.edit();
-        type=sharedPreferences.getString("UserType",null);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("SHAREDPREFERECEFILE", MODE_PRIVATE);
+        final SharedPreferences.Editor editor= sharedPreferences.edit();
+        type= sharedPreferences.getString("UserType",null);
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView=root.findViewById(R.id.recyclerView);
@@ -77,11 +76,11 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    public void getListForDriver(){
+    private void getListForDriver(){
         Toast.makeText(getContext(),"getListForDriver called..",Toast.LENGTH_SHORT).show();
     }
 
-    public void getListForOwner(){
+    private void getListForOwner(){
         Query query= db.child("user/Driver").orderByChild("num");
         query.addValueEventListener(new ValueEventListener() {
             @Override
