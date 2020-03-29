@@ -49,38 +49,5 @@ public class splashscreen extends AppCompatActivity {
         }
     }
 
-    private void checkUserLogedIn() {
-        DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
-        FirebaseAuth mAuth=FirebaseAuth.getInstance();
-        FirebaseUser muser=mAuth.getCurrentUser();
 
-        muser=mAuth.getCurrentUser();
-        //Toast.makeText(getBaseContext(),"checking.."+muser.getPhoneNumber(),Toast.LENGTH_SHORT).show();
-        if(muser!=null){
-            //Toast.makeText(getBaseContext(),"checking.."+muser.getPhoneNumber(),Toast.LENGTH_SHORT).show();
-            //if user is driver start drivermainActivity or start ownermainActivuty
-            Query query= mdb.child("user/Driver").orderByChild("num").equalTo(muser.getPhoneNumber());
-            query.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.exists()){
-                        Toast.makeText(getBaseContext(),"current user is Driver",Toast.LENGTH_SHORT).show();
-                        //startActivity(new Intent(getBaseContext(),DriverMainActivity.class));
-                        startActivity(new Intent(getBaseContext(),profileMainActivity.class));
-                        finish();
-                    }else{
-                        Toast.makeText(getBaseContext(),"current user is Owner",Toast.LENGTH_SHORT).show();
-                        //startActivity(new Intent(getBaseContext(),OwnerMainActivity.class));
-                        startActivity(new Intent(getBaseContext(),profileMainActivity.class));
-                        finish();
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
-            });
-        }else{
-            Toast.makeText(getBaseContext(),"user null",Toast.LENGTH_LONG).show();
-        }
-    }
 }
