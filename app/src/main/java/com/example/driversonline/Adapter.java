@@ -62,8 +62,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
                 Toast.makeText(v.getContext(),"Button 2 pressed of "+u.name,Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
     @Override
@@ -86,8 +84,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             ratingBar=itemView.findViewById(R.id.ratingBar);
             Btn1=itemView.findViewById(R.id.Btn1);
             Btn2=itemView.findViewById(R.id.Btn2);
-
-
         }
     }
 }

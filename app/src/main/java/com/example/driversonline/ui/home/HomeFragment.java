@@ -53,7 +53,6 @@ public class HomeFragment extends Fragment {
 
         users=new ArrayList<user>();
         //getListItems();
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter=new Adapter(this,users);
         recyclerView.setAdapter(adapter);
@@ -65,9 +64,7 @@ public class HomeFragment extends Fragment {
         super.onStart();
 
         if(muser!=null){
-            //Toast.makeText(getBaseContext(),"checking.."+muser.getPhoneNumber(),Toast.LENGTH_SHORT).show();
             //if user is driver start drivermainActivity or start ownermainActivuty
-
             if(type.equals("Driver")){
                 getListForDriver();
             }else if(type.equals("Owner")){
