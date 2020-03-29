@@ -40,10 +40,10 @@ import android.widget.Toast;
 public class profileMainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    NavigationView navigationView;
-    DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
-    FirebaseAuth mAuth=FirebaseAuth.getInstance();
-    SharedPreferences sharedPreferences;
+    public NavigationView navigationView;
+    public DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
+    public FirebaseAuth mAuth=FirebaseAuth.getInstance();
+    public SharedPreferences sharedPreferences;
     String type;
     user u = null;
     @Override
