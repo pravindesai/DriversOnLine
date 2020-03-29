@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         final SharedPreferences.Editor editor=sharedPreferences.edit();
         final Intent CombineLoginPage=new Intent(getBaseContext(),CombineLogInPage.class);
 
-        checkUserLogedIn();
+        //checkUserLogedIn();
 
         OwnerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                 }
             });
-
-
         }else{
             Toast.makeText(getBaseContext(),"user null",Toast.LENGTH_LONG).show();
         }
