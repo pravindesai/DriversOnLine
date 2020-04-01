@@ -1,7 +1,8 @@
 package com.example.driversonline;
 
-public
-class user{
+import java.io.Serializable;
+
+public class user implements Serializable {
     public String num;
     public String name;
     public String city;

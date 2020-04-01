@@ -3,6 +3,8 @@ package com.example.driversonline;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +16,11 @@ import android.widget.Toast;
 
 import com.example.driversonline.ui.home.HomeFragment;
 
+import java.io.Serializable;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
@@ -60,6 +64,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             @Override
             public void onClick(View v) {
                 Toast.makeText(v.getContext(),"Button 2 pressed of "+u.name,Toast.LENGTH_SHORT).show();
+                Intent bookDriverIntent=new Intent(v.getContext(),requestBooking.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("userObj", u);
+                //bookDriverIntent.putExtra("userObj",u);
+                bookDriverIntent.putExtras(bundle);
+                v.getContext().startActivity(bookDriverIntent);
             }
         });
     }

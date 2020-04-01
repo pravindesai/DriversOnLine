@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         final SharedPreferences.Editor editor=sharedPreferences.edit();
         final Intent CombineLoginPage=new Intent(getBaseContext(),CombineLogInPage.class);
 
-        //checkUserLogedIn();
+        checkUserLogedIn();
 
         OwnerBtn.setOnClickListener(new View.OnClickListener() {
             @Override

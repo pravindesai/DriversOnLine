@@ -30,7 +30,6 @@ public class splashscreen extends AppCompatActivity {
         getSupportActionBar().hide();
         LogoLauncher logoLauncher = new LogoLauncher();
         logoLauncher.start();
-
     }
 
     private class LogoLauncher extends Thread{
@@ -48,6 +47,4 @@ public class splashscreen extends AppCompatActivity {
             finish();
         }
     }
-
-
 }
