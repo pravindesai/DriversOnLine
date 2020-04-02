@@ -112,6 +112,11 @@ public class profileMainActivity extends AppCompatActivity {
                              u=snap.getValue(user.class);
                         }
                         header.setText(u.name);
+                        SharedPreferences.Editor myEdit
+                                = sharedPreferences.edit();
+                        myEdit.putString("CurrentUserName",u.name);
+                        myEdit.putString("CurrentUserCity",u.city);
+                        myEdit.commit();
                     }
                 }
 

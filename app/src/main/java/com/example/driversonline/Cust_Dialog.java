@@ -2,11 +2,17 @@ package com.example.driversonline;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
@@ -18,12 +24,21 @@ public class Cust_Dialog {
     int y1,y2;
     int m1,m2;
     int d1,d2;
-
+    String type,CurrentUserName,CurrentUserCity;
+    FirebaseAuth mAuth;
+    SharedPreferences sharedPreferences;
+    DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
 
 
     public void ShowCustomeDialog(final user u,View view) {
         MyDialog= new Dialog(view.getContext());
         MyDialog.setContentView(R.layout.customedialog);
+
+        sharedPreferences=view.getContext().getSharedPreferences("SHAREDPREFERECEFILE", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor=sharedPreferences.edit();
+        type=sharedPreferences.getString("UserType",null);
+        CurrentUserName=sharedPreferences.getString("CurrentUserName",null);
+        CurrentUserCity=sharedPreferences.getString("CurrentUserCity",null);
         //t.findViewById(R.id.textView);
        // t2.findViewById(R.id.textView2);
 
@@ -41,9 +56,28 @@ public class Cust_Dialog {
                     Toast.makeText(v.getContext(),"select all dates",Toast.LENGTH_SHORT).show();                }
                 else {
                     //ADD new Booking to DATABASE
+                    /*node[id]-->|------startDate
+                                 |------endDate
+                                 |------owner number i.e. current user number
+                                 |------owner city
+                                 |------Driver num/id i.e user u
+                                 |------Action [None/Accepted/Rejected]
+
+                        */
+                    {
+                        booking b=new booking(d1+"/"+m1+"/"+y1,
+                                            d2+"/"+m2+"/"+y2,
+                                            mAuth.getCurrentUser().getPhoneNumber(),
+                                CurrentUserName,
+                                CurrentUserCity,
+                                u.num,
+                                "None");
+                        //mdb.push().getKey()     generate Unique key
+                        mdb.child("booking").child(mdb.push().getKey()).setValue(b);
+                        Toast.makeText(v.getContext(),"Request Added",Toast.LENGTH_SHORT).show();
+                    }
                     //Toast.makeText(v.getContext(),d1+"/"+m1+"/"+y1,Toast.LENGTH_SHORT).show();
                     //Toast.makeText(v.getContext(),d2+"/"+m2+"/"+y2,Toast.LENGTH_SHORT).show();
-                    Toast.makeText(v.getContext(),u.name,Toast.LENGTH_SHORT).show();
                     MyDialog.dismiss();
                 }
             }

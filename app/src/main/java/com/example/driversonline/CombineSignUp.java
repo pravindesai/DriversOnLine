@@ -40,12 +40,12 @@ public class CombineSignUp extends AppCompatActivity {
     EditText nameEt,phoneNumberEt,otpEt,licenseEt;
     Spinner cityspinner;
     Button signUpBtn,verifyBtn;
-    SharedPreferences sharedPreferences;
     ViewStub viewStub;
     TextView textView;
 
     String vId;
     FirebaseAuth mAuth;
+    SharedPreferences sharedPreferences;
     DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
     String num,type;
     @Override
