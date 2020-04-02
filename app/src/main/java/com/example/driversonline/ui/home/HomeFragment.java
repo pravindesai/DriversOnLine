@@ -74,6 +74,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void getListForDriver(){
+        //DATABASE BOOKING TABLE HERE
         Toast.makeText(getContext(),"getListForDriver called..",Toast.LENGTH_SHORT).show();
     }
 

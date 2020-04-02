@@ -27,6 +27,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
     private LayoutInflater layoutInflater;
     List<user> data;
+    Cust_Dialog d;
 
     public Adapter(HomeFragment context, List<user>data) {
         this.layoutInflater=LayoutInflater.from(context.getContext());
@@ -64,12 +65,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             @Override
             public void onClick(View v) {
                 Toast.makeText(v.getContext(),"Button 2 pressed of "+u.name,Toast.LENGTH_SHORT).show();
-                Intent bookDriverIntent=new Intent(v.getContext(),requestBooking.class);
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("userObj", u);
-                //bookDriverIntent.putExtra("userObj",u);
-                bookDriverIntent.putExtras(bundle);
-                v.getContext().startActivity(bookDriverIntent);
+                d=new Cust_Dialog();
+                d.ShowCustomeDialog(u,v);
             }
         });
     }
