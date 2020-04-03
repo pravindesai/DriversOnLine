@@ -55,6 +55,8 @@ public class HomeFragment extends Fragment {
 
         users=new ArrayList<user>();
         bookings=new ArrayList<booking>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         //getListItems();
         /*recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter=new Adapter(this,users);
@@ -69,12 +71,11 @@ public class HomeFragment extends Fragment {
         if(muser!=null){
             //if user is driver start drivermainActivity or start ownermainActivuty
             if(type.equals("Driver")){
-                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                adapter=new Adapter(this,bookings);
+                //send bookings
+                adapter=new Adapter(this,bookings,1);
                 recyclerView.setAdapter(adapter);
                 getListForDriver();
             }else if(type.equals("Owner")){
-                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 adapter=new Adapter(this,users);
                 recyclerView.setAdapter(adapter);
                 getListForOwner();
@@ -90,14 +91,13 @@ public class HomeFragment extends Fragment {
                 if(dataSnapshot.exists()){
                     //Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
                     for(DataSnapshot snap:dataSnapshot.getChildren()){
-                        users.add(snap.getValue(user.class));
+                        bookings.add(snap.getValue(booking.class));
                         adapter.notifyDataSetChanged();
                     }
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
         Toast.makeText(getContext(),"getListForDriver called..",Toast.LENGTH_SHORT).show();

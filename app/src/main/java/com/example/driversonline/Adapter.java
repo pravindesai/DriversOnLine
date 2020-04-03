@@ -50,7 +50,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
         CurrentUserCity=sharedPreferences.getString("CurrentUserCity",null);
     }
 
-    public Adapter(HomeFragment context, ArrayList<booking> bdata) {
+    public Adapter(HomeFragment context, List<booking> bdata,int i) {
         this.layoutInflater=LayoutInflater.from(context.getContext());
         this.bdata=bdata;
         sharedPreferences=context.getContext().getSharedPreferences("SHAREDPREFERECEFILE", Context.MODE_PRIVATE);
@@ -58,6 +58,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
         type=sharedPreferences.getString("UserType",null);
         CurrentUserName=sharedPreferences.getString("CurrentUserName",null);
         CurrentUserCity=sharedPreferences.getString("CurrentUserCity",null);
+        Toast.makeText(context.getContext(),"Adapter.java booking constrructor",Toast.LENGTH_LONG).show();
     }
 
     @NonNull
@@ -69,37 +70,63 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final viewHolder holder, int position) {
-        final user u=data.get(position);
-        String num=u.num;
-        String type=u.type;
-        holder.nameTv.setText(u.name);
-        holder.cityTv.setText(u.city);
-        holder.ratingBar.setNumStars(5);
-        //set rating here
-        holder.detailsTv.setText(u.lno);
-        holder.imageView.setImageResource(R.drawable.cargif);
-        holder.Btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Toast.makeText(v.getContext(),"Button 1 pressed of "+u.name,Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+u.num));
-                v.getContext().startActivity(intent);
-            }
-        });
-        holder.Btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(),"Button 2 pressed of "+u.name,Toast.LENGTH_SHORT).show();
-                d=new Cust_Dialog();
-                d.ShowCustomeDialog(u,v);
-            }
-        });
+        if(type.equals("Driver")){
+            final booking b=bdata.get(position);
+             String startDate=b.startDate;
+             String endDate=b.endDate;
+             String Onum=b.Onum;
+             String Oname=b.Oname;
+             String Ocity=b.Ocity;
+             String Dnum=b.Dnum;
+             String Action=b.Action;
+            holder.nameTv.setText(Oname);
+            holder.cityTv.setText(Ocity);
+            holder.ratingBar.setNumStars(5);
+            holder.ratingBar.setFocusable(false);
+            holder.detailsTv.setText(startDate+"-- To --"+endDate);
+            holder.imageView.setImageResource(R.drawable.cargif);
+
+        }else if(type.equals("Owner")){
+            final user u=data.get(position);
+            String num=u.num;
+            String type=u.type;
+            holder.nameTv.setText(u.name);
+            holder.cityTv.setText(u.city);
+            holder.ratingBar.setNumStars(5);
+            //set rating here
+            holder.detailsTv.setText(u.lno);
+            holder.imageView.setImageResource(R.drawable.cargif);
+            holder.Btn1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Toast.makeText(v.getContext(),"Button 1 pressed of "+u.name,Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:"+u.num));
+                    v.getContext().startActivity(intent);
+                }
+            });
+            holder.Btn2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(),"Button 2 pressed of "+u.name,Toast.LENGTH_SHORT).show();
+                    d=new Cust_Dialog();
+                    d.ShowCustomeDialog(u,v);
+                }
+            });
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        if(type.equals("Driver")){
+                return bdata.size();
+        }else if(type.equals("Owner")){
+            return data.size();
+        }else {
+            return 3;
+        }
+
     }
 
     public class viewHolder extends RecyclerView.ViewHolder{
