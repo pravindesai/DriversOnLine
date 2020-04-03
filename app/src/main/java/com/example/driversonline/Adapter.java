@@ -2,6 +2,7 @@ package com.example.driversonline;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -15,8 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.driversonline.ui.home.HomeFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -27,11 +32,32 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
     private LayoutInflater layoutInflater;
     List<user> data;
+    List<booking> bdata;
     Cust_Dialog d;
+    String type,CurrentUserName,CurrentUserCity;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    FirebaseAuth mAuth=FirebaseAuth.getInstance();
+    DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
 
     public Adapter(HomeFragment context, List<user>data) {
         this.layoutInflater=LayoutInflater.from(context.getContext());
         this.data=data;
+        sharedPreferences=context.getContext().getSharedPreferences("SHAREDPREFERECEFILE", Context.MODE_PRIVATE);
+        editor =sharedPreferences.edit();
+        type=sharedPreferences.getString("UserType",null);
+        CurrentUserName=sharedPreferences.getString("CurrentUserName",null);
+        CurrentUserCity=sharedPreferences.getString("CurrentUserCity",null);
+    }
+
+    public Adapter(HomeFragment context, ArrayList<booking> bdata) {
+        this.layoutInflater=LayoutInflater.from(context.getContext());
+        this.bdata=bdata;
+        sharedPreferences=context.getContext().getSharedPreferences("SHAREDPREFERECEFILE", Context.MODE_PRIVATE);
+        editor =sharedPreferences.edit();
+        type=sharedPreferences.getString("UserType",null);
+        CurrentUserName=sharedPreferences.getString("CurrentUserName",null);
+        CurrentUserCity=sharedPreferences.getString("CurrentUserCity",null);
     }
 
     @NonNull

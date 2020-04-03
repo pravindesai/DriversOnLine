@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.driversonline.Adapter;
 import com.example.driversonline.R;
+import com.example.driversonline.booking;
 import com.example.driversonline.user;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,6 +38,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private Adapter adapter;
     private ArrayList<user> users;
+    private ArrayList<booking> bookings;
     private DatabaseReference db=FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth mAuth=FirebaseAuth.getInstance();
     private FirebaseUser muser=mAuth.getCurrentUser();
@@ -52,10 +54,11 @@ public class HomeFragment extends Fragment {
         recyclerView=root.findViewById(R.id.recyclerView);
 
         users=new ArrayList<user>();
+        bookings=new ArrayList<booking>();
         //getListItems();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        /*recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter=new Adapter(this,users);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);*/
         return root;
     }
 
@@ -66,15 +69,37 @@ public class HomeFragment extends Fragment {
         if(muser!=null){
             //if user is driver start drivermainActivity or start ownermainActivuty
             if(type.equals("Driver")){
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                adapter=new Adapter(this,bookings);
+                recyclerView.setAdapter(adapter);
                 getListForDriver();
             }else if(type.equals("Owner")){
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                adapter=new Adapter(this,users);
+                recyclerView.setAdapter(adapter);
                 getListForOwner();
             }
         }
     }
 
     private void getListForDriver(){
-        //DATABASE BOOKING TABLE HERE
+        Query query= db.child("booking").orderByChild("Dnum").equalTo(muser.getPhoneNumber());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    //Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
+                    for(DataSnapshot snap:dataSnapshot.getChildren()){
+                        users.add(snap.getValue(user.class));
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         Toast.makeText(getContext(),"getListForDriver called..",Toast.LENGTH_SHORT).show();
     }
 

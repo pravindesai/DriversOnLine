@@ -101,7 +101,6 @@ public class profileMainActivity extends AppCompatActivity {
 
         if(muser!=null){
             //Toast.makeText(getBaseContext(),"checking.."+muser.getPhoneNumber(),Toast.LENGTH_SHORT).show();
-            //if user is driver start drivermainActivity or start ownermainActivuty
             Query query= mdb.child("user/"+type).orderByChild("num").equalTo(muser.getPhoneNumber());
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -112,8 +111,7 @@ public class profileMainActivity extends AppCompatActivity {
                              u=snap.getValue(user.class);
                         }
                         header.setText(u.name);
-                        SharedPreferences.Editor myEdit
-                                = sharedPreferences.edit();
+                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
                         myEdit.putString("CurrentUserName",u.name);
                         myEdit.putString("CurrentUserCity",u.city);
                         myEdit.commit();
