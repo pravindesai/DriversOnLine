@@ -58,7 +58,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
         type=sharedPreferences.getString("UserType",null);
         CurrentUserName=sharedPreferences.getString("CurrentUserName",null);
         CurrentUserCity=sharedPreferences.getString("CurrentUserCity",null);
-        Toast.makeText(context.getContext(),"Adapter.java booking constrructor",Toast.LENGTH_LONG).show();
+        //Toast.makeText(context.getContext(),"Adapter.java booking constrructor",Toast.LENGTH_LONG).show();
     }
 
     @NonNull
@@ -69,7 +69,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final viewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final viewHolder holder, final int position) {
         if(type.equals("Driver")){
             final booking b=bdata.get(position);
              String startDate=b.startDate;
@@ -82,9 +82,32 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             holder.nameTv.setText(Oname);
             holder.cityTv.setText(Ocity);
             holder.ratingBar.setNumStars(5);
-            holder.ratingBar.setFocusable(false);
-            holder.detailsTv.setText(startDate+"-- To --"+endDate);
+            holder.ratingBar.setRating(Float.parseFloat("4"));
+            holder.ratingBar.setEnabled(false);
+            holder.detailsTv.setText(startDate+"   To   "+endDate);
             holder.imageView.setImageResource(R.drawable.cargif);
+            holder.Btn1.setText("Accept");
+            holder.Btn2.setText("Reject");
+            holder.Btn1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(),"Button1  "+position,Toast.LENGTH_SHORT).show();
+                    bdata.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position,bdata.size());
+
+
+                }
+            });
+            holder.Btn2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(),"Button2  "+position,Toast.LENGTH_SHORT).show();
+                    bdata.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position,bdata.size());
+                }
+            });
 
         }else if(type.equals("Owner")){
             final user u=data.get(position);
@@ -93,7 +116,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             holder.nameTv.setText(u.name);
             holder.cityTv.setText(u.city);
             holder.ratingBar.setNumStars(5);
-            //set rating here
+            holder.ratingBar.setRating(Float.parseFloat("4"));
+            holder.ratingBar.setEnabled(false);
             holder.detailsTv.setText(u.lno);
             holder.imageView.setImageResource(R.drawable.cargif);
             holder.Btn1.setOnClickListener(new View.OnClickListener() {
@@ -108,13 +132,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             holder.Btn2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(),"Button 2 pressed of "+u.name,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(v.getContext(),"Button 2 pressed of "+u.name,Toast.LENGTH_SHORT).show();
                     d=new Cust_Dialog();
                     d.ShowCustomeDialog(u,v);
                 }
             });
         }
-
     }
 
     @Override

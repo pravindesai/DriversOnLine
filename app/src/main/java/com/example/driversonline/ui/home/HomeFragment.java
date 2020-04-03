@@ -37,8 +37,8 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private Adapter adapter;
-    private ArrayList<user> users;
-    private ArrayList<booking> bookings;
+    public ArrayList<user> users;
+    public ArrayList<booking> bookings;
     private DatabaseReference db=FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth mAuth=FirebaseAuth.getInstance();
     private FirebaseUser muser=mAuth.getCurrentUser();
@@ -57,31 +57,29 @@ public class HomeFragment extends Fragment {
         bookings=new ArrayList<booking>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        //getListItems();
-        /*recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter=new Adapter(this,users);
-        recyclerView.setAdapter(adapter);*/
+
         return root;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+        @Override
+        public void onStart() {
+            super.onStart();
 
-        if(muser!=null){
-            //if user is driver start drivermainActivity or start ownermainActivuty
-            if(type.equals("Driver")){
-                //send bookings
-                adapter=new Adapter(this,bookings,1);
-                recyclerView.setAdapter(adapter);
-                getListForDriver();
-            }else if(type.equals("Owner")){
-                adapter=new Adapter(this,users);
-                recyclerView.setAdapter(adapter);
-                getListForOwner();
+            if(muser!=null){
+                //if user is driver start drivermainActivity or start ownermainActivuty
+                if(type.equals("Driver")){
+                    //send bookings
+                    adapter=new Adapter(this,bookings,1);
+                    recyclerView.setAdapter(adapter);
+                    getListForDriver();
+                }else if(type.equals("Owner")){
+                    adapter=new Adapter(this,users);
+                    recyclerView.setAdapter(adapter);
+                    getListForOwner();
+                }
             }
         }
-    }
+
 
     private void getListForDriver(){
         Query query= db.child("booking").orderByChild("Dnum").equalTo(muser.getPhoneNumber());
@@ -100,7 +98,7 @@ public class HomeFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-        Toast.makeText(getContext(),"getListForDriver called..",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"getListForDriver called..",Toast.LENGTH_SHORT).show();
     }
 
     private void getListForOwner(){
