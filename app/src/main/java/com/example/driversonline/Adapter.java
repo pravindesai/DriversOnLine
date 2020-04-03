@@ -96,7 +96,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position,bdata.size());
 
-
                 }
             });
             holder.Btn2.setOnClickListener(new View.OnClickListener() {
