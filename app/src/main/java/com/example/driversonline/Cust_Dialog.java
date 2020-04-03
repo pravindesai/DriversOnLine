@@ -25,7 +25,7 @@ public class Cust_Dialog {
     int m1,m2;
     int d1,d2;
     String type,CurrentUserName,CurrentUserCity;
-    FirebaseAuth mAuth;
+    FirebaseAuth mAuth=FirebaseAuth.getInstance();
     SharedPreferences sharedPreferences;
     DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
 
@@ -62,20 +62,19 @@ public class Cust_Dialog {
                                  |------owner city
                                  |------Driver num/id i.e user u
                                  |------Action [None/Accepted/Rejected]
-
                         */
-                    {
+
                         booking b=new booking(d1+"/"+m1+"/"+y1,
                                             d2+"/"+m2+"/"+y2,
                                             mAuth.getCurrentUser().getPhoneNumber(),
-                                CurrentUserName,
-                                CurrentUserCity,
-                                u.num,
-                                "None");
+                                            CurrentUserName,
+                                            CurrentUserCity,
+                                            u.num,
+                                            "None");
                         //mdb.push().getKey()     generate Unique key
                         mdb.child("booking").child(mdb.push().getKey()).setValue(b);
                         Toast.makeText(v.getContext(),"Request Added",Toast.LENGTH_SHORT).show();
-                    }
+
                     //Toast.makeText(v.getContext(),d1+"/"+m1+"/"+y1,Toast.LENGTH_SHORT).show();
                     //Toast.makeText(v.getContext(),d2+"/"+m2+"/"+y2,Toast.LENGTH_SHORT).show();
                     MyDialog.dismiss();
