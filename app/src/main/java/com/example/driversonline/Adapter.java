@@ -98,30 +98,21 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             holder.Btn1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
-                    //Toast.makeText(v.getContext(),"Button1  "+position,Toast.LENGTH_SHORT).show();
-                    //booking b=new booking(startDate,  endDate,  Onum, Oname,  Ocity,  Dnum,  "Accept");
-                    //mdb.child("booking").setValue(b);
-                    //mdb.child("booking")
-
                     updateBookingMethod(b,"Accept");
-
                     bdata.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position,bdata.size());
-
                 }
             });
             holder.Btn2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Toast.makeText(v.getContext(),"Button2  "+position,Toast.LENGTH_SHORT).show();
                     updateBookingMethod(b,"Reject");
                     bdata.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position,bdata.size());
                 }
             });
-
         }else if(type.equals("Owner")){
             final user u=data.get(position);
             String num=u.num;
@@ -163,7 +154,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
                     //Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
                     for(DataSnapshot snap:dataSnapshot.getChildren()){
                         booking Qb=snap.getValue(booking.class);
-                        if(Qb.Oname.equals(b.Oname)
+                        if(         Qb.Oname.equals(b.Oname)
                                 && Qb.startDate.equals(b.startDate)
                                 && Qb.endDate.equals(b.endDate)){
                             id=snap.getKey();
