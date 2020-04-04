@@ -89,8 +89,11 @@ public class HomeFragment extends Fragment {
                 if(dataSnapshot.exists()){
                     //Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
                     for(DataSnapshot snap:dataSnapshot.getChildren()){
-                        bookings.add(snap.getValue(booking.class));
-                        adapter.notifyDataSetChanged();
+                        booking b=snap.getValue(booking.class);
+                        if(b.Action.equals("None")){
+                            bookings.add(b);
+                            adapter.notifyDataSetChanged();
+                        }
                     }
                 }
             }

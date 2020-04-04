@@ -72,13 +72,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
     public void onBindViewHolder(@NonNull final viewHolder holder, final int position) {
         if(type.equals("Driver")){
             final booking b=bdata.get(position);
-             String startDate=b.startDate;
-             String endDate=b.endDate;
-             String Onum=b.Onum;
-             String Oname=b.Oname;
-             String Ocity=b.Ocity;
-             String Dnum=b.Dnum;
-             String Action=b.Action;
+             final String startDate=b.startDate;
+             final String endDate=b.endDate;
+             final String Onum=b.Onum;
+             final String Oname=b.Oname;
+             final String Ocity=b.Ocity;
+             final String Dnum=b.Dnum;
+             final String Action=b.Action;
             holder.nameTv.setText(Oname);
             holder.cityTv.setText(Ocity);
             holder.ratingBar.setNumStars(5);
@@ -91,7 +91,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             holder.Btn1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(),"Button1  "+position,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(v.getContext(),"Button1  "+position,Toast.LENGTH_SHORT).show();
+                    //booking b=new booking(startDate,  endDate,  Onum, Oname,  Ocity,  Dnum,  "Accept");
+                    //mdb.child("booking").setValue(b);
                     bdata.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position,bdata.size());
@@ -101,7 +103,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             holder.Btn2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(),"Button2  "+position,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(v.getContext(),"Button2  "+position,Toast.LENGTH_SHORT).show();
                     bdata.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position,bdata.size());
