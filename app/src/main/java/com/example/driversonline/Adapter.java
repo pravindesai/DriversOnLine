@@ -17,8 +17,12 @@ import android.widget.Toast;
 
 import com.example.driversonline.ui.home.HomeFragment;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,6 +35,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
     private LayoutInflater layoutInflater;
+    String id;
     List<user> data;
     List<booking> bdata;
     Cust_Dialog d;
@@ -71,7 +76,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final viewHolder holder, final int position) {
         if(type.equals("Driver")){
-            final booking b=bdata.get(position);
+             final booking b=bdata.get(position);
              final String startDate=b.startDate;
              final String endDate=b.endDate;
              final String Onum=b.Onum;
@@ -79,6 +84,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
              final String Ocity=b.Ocity;
              final String Dnum=b.Dnum;
              final String Action=b.Action;
+
             holder.nameTv.setText(Oname);
             holder.cityTv.setText(Ocity);
             holder.ratingBar.setNumStars(5);
@@ -88,12 +94,42 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             holder.imageView.setImageResource(R.drawable.cargif);
             holder.Btn1.setText("Accept");
             holder.Btn2.setText("Reject");
+
             holder.Btn1.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(final View v) {
                     //Toast.makeText(v.getContext(),"Button1  "+position,Toast.LENGTH_SHORT).show();
                     //booking b=new booking(startDate,  endDate,  Onum, Oname,  Ocity,  Dnum,  "Accept");
                     //mdb.child("booking").setValue(b);
+                    //mdb.child("booking")
+
+
+                    Query query= mdb.child("booking").orderByChild("Dnum")
+                            .equalTo(mAuth.getCurrentUser().getPhoneNumber());
+                    query.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists()){
+                                //Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
+                                for(DataSnapshot snap:dataSnapshot.getChildren()){
+                                    booking Qb=snap.getValue(booking.class);
+                                    if(Qb.Oname.equals(Oname)
+                                        && Qb.startDate.equals(startDate)
+                                        && Qb.endDate.equals(endDate)){
+                                        id=snap.getKey();
+                                        booking updateBooking=new booking(startDate,endDate,Onum,Oname,Ocity,Dnum,"Accept");
+                                        mdb.child("booking").child(id).setValue(updateBooking);
+                                        Toast.makeText(v.getContext(),id+"  Done",Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
+                    });
+
                     bdata.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position,bdata.size());
