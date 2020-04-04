@@ -103,32 +103,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
                     //mdb.child("booking").setValue(b);
                     //mdb.child("booking")
 
-
-                    Query query= mdb.child("booking").orderByChild("Dnum")
-                            .equalTo(mAuth.getCurrentUser().getPhoneNumber());
-                    query.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists()){
-                                //Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
-                                for(DataSnapshot snap:dataSnapshot.getChildren()){
-                                    booking Qb=snap.getValue(booking.class);
-                                    if(Qb.Oname.equals(Oname)
-                                        && Qb.startDate.equals(startDate)
-                                        && Qb.endDate.equals(endDate)){
-                                        id=snap.getKey();
-                                        booking updateBooking=new booking(startDate,endDate,Onum,Oname,Ocity,Dnum,"Accept");
-                                        mdb.child("booking").child(id).setValue(updateBooking);
-                                        Toast.makeText(v.getContext(),id+"  Done",Toast.LENGTH_SHORT).show();
-
-                                    }
-                                }
-                            }
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                        }
-                    });
+                    updateBookingMethod(b,"Accept");
 
                     bdata.remove(position);
                     notifyItemRemoved(position);
@@ -140,6 +115,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
                 @Override
                 public void onClick(View v) {
                     //Toast.makeText(v.getContext(),"Button2  "+position,Toast.LENGTH_SHORT).show();
+                    updateBookingMethod(b,"Reject");
                     bdata.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position,bdata.size());
@@ -175,6 +151,34 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
                 }
             });
         }
+    }
+
+    private void updateBookingMethod(final booking b, final String Action) {
+        Query query= mdb.child("booking").orderByChild("Dnum")
+                .equalTo(mAuth.getCurrentUser().getPhoneNumber());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    //Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
+                    for(DataSnapshot snap:dataSnapshot.getChildren()){
+                        booking Qb=snap.getValue(booking.class);
+                        if(Qb.Oname.equals(b.Oname)
+                                && Qb.startDate.equals(b.startDate)
+                                && Qb.endDate.equals(b.endDate)){
+                            id=snap.getKey();
+                            booking updateBooking=new booking(b.startDate,b.endDate,b.Onum,b.Oname,b.Ocity,b.Dnum,Action);
+                            mdb.child("booking").child(id).setValue(updateBooking);
+                            //Toast.makeText(v.getContext(),id+"  Done",Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 
     @Override
