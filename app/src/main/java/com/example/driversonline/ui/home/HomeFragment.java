@@ -79,8 +79,6 @@ public class HomeFragment extends Fragment {
                 }
             }
         }
-
-
     private void getListForDriver(){
         Query query= db.child("booking").orderByChild("Dnum").equalTo(muser.getPhoneNumber());
         query.addValueEventListener(new ValueEventListener() {
