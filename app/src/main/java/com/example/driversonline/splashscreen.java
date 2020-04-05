@@ -33,7 +33,7 @@ public class splashscreen extends AppCompatActivity {
     }
 
     private class LogoLauncher extends Thread{
-        private static final int SLEEP_TIMER = 3;
+        private static final int SLEEP_TIMER = 5;
 
         public void run(){
             try{
@@ -41,7 +41,6 @@ public class splashscreen extends AppCompatActivity {
             }catch(InterruptedException e){
                 e.printStackTrace();
             }
-
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
             startActivity(intent);
             finish();
