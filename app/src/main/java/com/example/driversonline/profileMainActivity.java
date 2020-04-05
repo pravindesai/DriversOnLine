@@ -67,7 +67,6 @@ public class profileMainActivity extends AppCompatActivity {
                 R.id.nav_logout,R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
-
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -79,14 +78,12 @@ public class profileMainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.profile_main, menu);
         return true;
     }
-
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -97,7 +94,6 @@ public class profileMainActivity extends AppCompatActivity {
         //header.setText("NAME HERE");
         TextView navUsername = (TextView) headerView.findViewById(R.id.textView);
         navUsername.setText(type);
-
 
         if(muser!=null){
             //Toast.makeText(getBaseContext(),"checking.."+muser.getPhoneNumber(),Toast.LENGTH_SHORT).show();
@@ -117,7 +113,6 @@ public class profileMainActivity extends AppCompatActivity {
                         myEdit.commit();
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
