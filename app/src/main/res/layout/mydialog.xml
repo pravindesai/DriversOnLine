@@ -1,0 +1,101 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="218dp"
+        android:padding="10dp"
+        android:layout_height="140dp"
+        android:src="@drawable/a" />
+
+    <TableRow
+        android:id="@+id/hr1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#444" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Follow me on GitHub" />
+
+    <TextView
+        android:id="@+id/gittv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="gotogithub"
+        android:text="github.com/pravindesai"
+        android:textColor="#128CEB"
+        android:textStyle="bold|italic" />
+
+    <TableRow
+        android:id="@+id/hr2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="12dp"
+        android:background="#444" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Follow me instagram" />
+
+    <TextView
+        android:id="@+id/instatv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="gotoinsta"
+        android:text="instagram.com/pravindesai__"
+        android:textColor="#128CEB"
+        android:textStyle="bold|italic" />
+
+    <TableRow
+        android:id="@+id/hr"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="12dp"
+        android:background="#444" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Contact me on mail" />
+
+    <TextView
+        android:id="@+id/gmailtv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="gotomail"
+        android:text="pravindesai100@gmail.com"
+        android:textColor="#128CEB"
+        android:textStyle="bold|italic" />
+
+    <TableRow
+        android:id="@+id/hr3"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="12dp"
+        android:background="#444" />
+
+    <Button
+        android:id="@+id/btn_dialog"
+        android:layout_width="165dp"
+        android:layout_height="39dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/border"
+        android:text="@android:string/ok" />
+
+</LinearLayout>
