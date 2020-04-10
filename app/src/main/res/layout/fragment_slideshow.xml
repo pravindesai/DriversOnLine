@@ -15,6 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:divider="@color/colorPrimaryDark"
-        android:listSelector="@color/cardview_shadow_start_color"
+        android:listSelector="#E2DDDD"
         android:dividerHeight="2dp"/>
 </LinearLayout>
