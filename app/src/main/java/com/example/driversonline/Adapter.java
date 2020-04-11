@@ -3,6 +3,8 @@ package com.example.driversonline;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -16,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.driversonline.ui.home.HomeFragment;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -44,6 +50,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
     SharedPreferences.Editor editor;
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
     DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReferenceFromUrl("gs://driversonline-f306c.appspot.com");    //change the url according to your firebase app
+
 
     public Adapter(HomeFragment context, List<user>data) {
         this.layoutInflater=LayoutInflater.from(context.getContext());
@@ -124,6 +133,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             holder.ratingBar.setEnabled(false);
             holder.detailsTv.setText(u.lno);
             holder.imageView.setImageResource(R.drawable.cargif);
+
             holder.Btn1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -141,7 +151,28 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
                     d.ShowCustomeDialog(u,v);
                 }
             });
+            update_img(holder,u);
         }
+    }
+
+    private void update_img(final viewHolder holder,user u) {
+        StorageReference pic = storageRef.child("Photos/").child(u.num+".jpg");
+        pic.getBytes(1024 * 1024 *5 )
+                .addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        //Toast.makeText(getContext(),"inge loding Success",Toast.LENGTH_LONG).show();
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        holder.imageView.setImageBitmap(bitmap);
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //Toast.makeText(getContext(),"image loding failed\n"+e,Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
     private void updateBookingMethod(final booking b, final String Action) {

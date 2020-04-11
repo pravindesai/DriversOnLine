@@ -76,7 +76,7 @@ public class GalleryFragment extends Fragment {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SHAREDPREFERECEFILE", MODE_PRIVATE);
         final SharedPreferences.Editor editor= sharedPreferences.edit();
         type= sharedPreferences.getString("UserType",null);
-         root = inflater.inflate(R.layout.fragment_gallery, container, false);
+        root = inflater.inflate(R.layout.fragment_gallery, container, false);
 
         editBtn=root.findViewById(R.id.editBtn);
         profilepic=root.findViewById(R.id.profilepic);
@@ -110,11 +110,12 @@ public class GalleryFragment extends Fragment {
                 chooseProfilePic();
             }
         });
-        StorageReference pic = storageRef.child("Photos/").child("+918408008920.jpg");
-        pic.getBytes(1024 * 1024*5).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        StorageReference pic = storageRef.child("Photos/").child(muser.getPhoneNumber()+".jpg");
+        pic.getBytes(1024 * 1024 *5 )
+                .addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
-                Toast.makeText(getContext(),"inge loding Success",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(),"image loading Success",Toast.LENGTH_LONG).show();
                 bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 profilepic.setImageBitmap(bitmap);
 
@@ -122,7 +123,7 @@ public class GalleryFragment extends Fragment {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(),"image loding failed\n"+e,Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"image loading failed\n"+e,Toast.LENGTH_LONG).show();
             }
         });
 
@@ -172,7 +173,7 @@ public class GalleryFragment extends Fragment {
 
     public void upload_image(){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, baos);
         byte[] data = baos.toByteArray();
 
         if(bitmap != null) {
