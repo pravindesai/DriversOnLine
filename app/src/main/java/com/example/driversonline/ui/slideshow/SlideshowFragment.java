@@ -48,10 +48,6 @@ public class SlideshowFragment extends Fragment {
     private String type;
     ListView listView;
 
-    String countryList[] = {"India", "China", "australia", "Portugle", "America", "America", "NewZealand",
-            "NewZealand", "America", "NewZealand"};
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SHAREDPREFERECEFILE", MODE_PRIVATE);

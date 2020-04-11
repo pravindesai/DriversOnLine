@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,6 +24,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.driversonline.R;
 import com.example.driversonline.booking;
 import com.example.driversonline.user;
@@ -39,6 +41,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -84,6 +87,7 @@ public class GalleryFragment extends Fragment {
         pd.setMessage("Its loading....");
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
+
         Query query=db.child("user").child(type).orderByChild("num").equalTo(muser.getPhoneNumber());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -104,6 +108,21 @@ public class GalleryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 chooseProfilePic();
+            }
+        });
+        StorageReference pic = storageRef.child("Photos/").child("+918408008920.jpg");
+        pic.getBytes(1024 * 1024*5).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Toast.makeText(getContext(),"inge loding Success",Toast.LENGTH_LONG).show();
+                bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                profilepic.setImageBitmap(bitmap);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(),"image loding failed\n"+e,Toast.LENGTH_LONG).show();
             }
         });
 
