@@ -122,6 +122,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
                     notifyItemRangeChanged(position,bdata.size());
                 }
             });
+            update_img(holder,Onum);
         }else if(type.equals("Owner")){
             final user u=data.get(position);
             String num=u.num;
@@ -151,20 +152,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
                     d.ShowCustomeDialog(u,v);
                 }
             });
-            update_img(holder,u);
+            update_img(holder,num);
         }
     }
 
-    private void update_img(final viewHolder holder,user u) {
-        StorageReference pic = storageRef.child("Photos/").child(u.num+".jpg");
-        pic.getBytes(1024 * 1024 *5 )
+    private void update_img(final viewHolder holder,String num) {
+        StorageReference pic = storageRef.child("Photos/").child(num+".jpg");
+        pic.getBytes(1024 * 1024  )
                 .addOnSuccessListener(new OnSuccessListener<byte[]>() {
                     @Override
                     public void onSuccess(byte[] bytes) {
                         //Toast.makeText(getContext(),"inge loding Success",Toast.LENGTH_LONG).show();
                         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                         holder.imageView.setImageBitmap(bitmap);
-
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

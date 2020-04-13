@@ -111,7 +111,7 @@ public class GalleryFragment extends Fragment {
             }
         });
         StorageReference pic = storageRef.child("Photos/").child(muser.getPhoneNumber()+".jpg");
-        pic.getBytes(1024 * 1024 *5 )
+        pic.getBytes(1024 * 1024 )
                 .addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {

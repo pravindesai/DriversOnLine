@@ -3,13 +3,18 @@ package com.example.driversonline;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,6 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -36,6 +43,13 @@ public class profileMainActivity extends AppCompatActivity {
     public NavigationView navigationView;
     public DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
     public FirebaseAuth mAuth=FirebaseAuth.getInstance();
+    FirebaseUser muser;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReferenceFromUrl("gs://driversonline-f306c.appspot.com");    //change the url according to your firebase app
+    Bitmap bitmap;
+    ImageView picimg;
+    TextView navUsername,header;
+
     public SharedPreferences sharedPreferences;
     String type;
     user u = null;
@@ -82,11 +96,13 @@ public class profileMainActivity extends AppCompatActivity {
         super.onStart();
 
         final View headerView = navigationView.getHeaderView(0);
-        FirebaseUser muser=mAuth.getCurrentUser();
+        muser=mAuth.getCurrentUser();
         //TextView header = (TextView) headerView.findViewById(R.id.headerText);
         //header.setText("NAME HERE");
-        TextView navUsername = (TextView) headerView.findViewById(R.id.textView);
-        navUsername.setText(type);
+        header = (TextView) headerView.findViewById(R.id.headerText);
+        navUsername = (TextView) headerView.findViewById(R.id.textView);
+        picimg=headerView.findViewById(R.id.imageView);
+
 
         if(muser!=null){
             //Toast.makeText(getBaseContext(),"checking.."+muser.getPhoneNumber(),Toast.LENGTH_SHORT).show();
@@ -95,11 +111,13 @@ public class profileMainActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.exists()){
-                        TextView header = (TextView) headerView.findViewById(R.id.headerText);
+
                         for(DataSnapshot snap:dataSnapshot.getChildren()){
                              u=snap.getValue(user.class);
                         }
                         header.setText(u.name);
+                        navUsername.setText(u.type);
+
                         SharedPreferences.Editor myEdit = sharedPreferences.edit();
                         myEdit.putString("CurrentUserName",u.name);
                         myEdit.putString("CurrentUserCity",u.city);
@@ -108,13 +126,31 @@ public class profileMainActivity extends AppCompatActivity {
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
                 }
             });
+            //showprofile();
         }else{
             Toast.makeText(getBaseContext(),"user null",Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    private void showprofile() {
+        StorageReference pic = storageRef.child("Photos/").child(muser.getPhoneNumber()+".jpg");
+        pic.getBytes(1024 * 1024 )
+                .addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        //Toast.makeText(getContext(),"image loading Success",Toast.LENGTH_LONG).show();
+                        bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        picimg.setImageBitmap(bitmap);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //Toast.makeText(getContext(),"image loading failed\n"+e,Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public void logout(MenuItem item) {
