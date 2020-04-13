@@ -128,7 +128,7 @@ public class profileMainActivity extends AppCompatActivity {
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                 }
             });
-            //showprofile();
+            showprofile();
         }else{
             Toast.makeText(getBaseContext(),"user null",Toast.LENGTH_LONG).show();
         }
