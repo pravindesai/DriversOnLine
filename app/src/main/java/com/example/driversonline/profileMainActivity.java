@@ -111,7 +111,6 @@ public class profileMainActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.exists()){
-
                         for(DataSnapshot snap:dataSnapshot.getChildren()){
                              u=snap.getValue(user.class);
                         }
@@ -131,7 +130,6 @@ public class profileMainActivity extends AppCompatActivity {
         }else{
             Toast.makeText(getBaseContext(),"user null",Toast.LENGTH_LONG).show();
         }
-
     }
 
     private void showprofile() {
