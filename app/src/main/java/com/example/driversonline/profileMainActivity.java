@@ -117,7 +117,6 @@ public class profileMainActivity extends AppCompatActivity {
                         }
                         header.setText(u.name);
                         navUsername.setText(u.type);
-
                         SharedPreferences.Editor myEdit = sharedPreferences.edit();
                         myEdit.putString("CurrentUserName",u.name);
                         myEdit.putString("CurrentUserCity",u.city);
