@@ -56,8 +56,6 @@ public class HomeFragment extends Fragment {
         users=new ArrayList<user>();
         bookings=new ArrayList<booking>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
         return root;
     }
 
