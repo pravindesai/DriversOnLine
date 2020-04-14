@@ -8,8 +8,6 @@
     android:background="@drawable/customborder"
     android:layout_margin="5dp"
     android:orientation="vertical">
-
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="386dp"
