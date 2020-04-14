@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/nav_request"
         android:name="com.example.driversonline.ui.slideshow.SlideshowFragment"
-        android:label="request"
+        android:label="Requests"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
