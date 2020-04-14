@@ -87,7 +87,6 @@ public class GalleryFragment extends Fragment {
         pd.setMessage("Its loading....");
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
-
         Query query=db.child("user").child(type).orderByChild("num").equalTo(muser.getPhoneNumber());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -126,7 +125,6 @@ public class GalleryFragment extends Fragment {
                 Toast.makeText(getContext(),"image loading failed\n"+e,Toast.LENGTH_LONG).show();
             }
         });
-
         return root;
     }
 
@@ -134,7 +132,6 @@ public class GalleryFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Upload new profile picture");
         //builder.setMessage("");
-
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
