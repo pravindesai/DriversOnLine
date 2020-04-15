@@ -31,7 +31,7 @@
                 android:title="@string/menu_share" />
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_privacy_policy"
                 android:title="Privacy Policy" />
         </menu>
     </item>
