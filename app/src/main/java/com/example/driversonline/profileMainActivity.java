@@ -170,4 +170,14 @@ public class profileMainActivity extends AppCompatActivity {
         AlertDialog dialog=builder.create();
         dialog.show();
     }
+
+    public void invite(MenuItem item) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey!\n Now no need to ask people about drivers. \n" +
+                "Check out the Drivers OnLine App to get verified Car driver online" +
+                "at: https://play.google.com/store/apps/details?id=" +getPackageName());
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+    }
 }

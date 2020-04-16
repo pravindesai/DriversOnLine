@@ -28,7 +28,8 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_share" />
+                android:title="Invite"
+                android:onClick="invite"/>
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_privacy_policy"
