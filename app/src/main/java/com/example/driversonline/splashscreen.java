@@ -6,9 +6,13 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 public class splashscreen extends AppCompatActivity {
-
+    FirebaseAuth mAuth=FirebaseAuth.getInstance();
+    FirebaseUser muser=mAuth.getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +26,7 @@ public class splashscreen extends AppCompatActivity {
     }
 
     private class LogoLauncher extends Thread{
-        private static final int SLEEP_TIMER = 5;
+        private static final int SLEEP_TIMER = 3;
 
         public void run(){
             try{
@@ -35,4 +39,6 @@ public class splashscreen extends AppCompatActivity {
             finish();
         }
     }
+
+
 }
