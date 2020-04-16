@@ -16,7 +16,8 @@
         app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -113,6 +114,7 @@
                     android:layout_height="35dp"
                     android:layout_weight="1"
                     android:text="CALL"
+                    android:layout_marginBottom="2sp"
                     android:textSize="10sp" />
 
                 <Button
@@ -122,6 +124,7 @@
                     android:layout_weight="1"
                     android:padding="10dp"
                     android:text="BOOK"
+                    android:layout_marginBottom="2sp"
                     android:textSize="10sp" />
             </LinearLayout>
 
