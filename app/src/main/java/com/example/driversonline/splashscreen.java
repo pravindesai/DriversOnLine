@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 
 public class splashscreen extends AppCompatActivity {
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
@@ -23,6 +21,7 @@ public class splashscreen extends AppCompatActivity {
         getSupportActionBar().hide();
         LogoLauncher logoLauncher = new LogoLauncher();
         logoLauncher.start();
+
     }
 
     private class LogoLauncher extends Thread{
@@ -34,11 +33,15 @@ public class splashscreen extends AppCompatActivity {
             }catch(InterruptedException e){
                 e.printStackTrace();
             }
-            Intent intent = new Intent(getBaseContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
+            if(muser!=null){
+                startActivity(new Intent(getBaseContext(),profileMainActivity.class));
+                finish();
+            }else {
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
         }
     }
-
 
 }
