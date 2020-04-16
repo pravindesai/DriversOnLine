@@ -62,7 +62,6 @@ public class HomeFragment extends Fragment {
         @Override
         public void onStart() {
             super.onStart();
-
             if(muser!=null){
                 //if user is driver start drivermainActivity or start ownermainActivuty
                 if(type.equals("Driver")){
@@ -78,6 +77,7 @@ public class HomeFragment extends Fragment {
             }
         }
     private void getListForDriver(){
+        bookings.clear();
         Query query= db.child("booking").orderByChild("Dnum").equalTo(muser.getPhoneNumber());
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -101,6 +101,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void getListForOwner(){
+        users.clear();
         Query query= db.child("user/Driver").orderByChild("num");
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -115,7 +116,6 @@ public class HomeFragment extends Fragment {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }

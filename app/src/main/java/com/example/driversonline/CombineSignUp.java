@@ -69,8 +69,6 @@ public class CombineSignUp extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
 
 
-
-
         if(sharedPreferences.getString("UserType",null).equals("Driver")){
             //user is driver , inflate and replace view stub
             textView.setText("You can Drive?\nSign up here.");

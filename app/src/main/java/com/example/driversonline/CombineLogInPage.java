@@ -34,6 +34,7 @@ import java.util.concurrent.TimeUnit;
 public class CombineLogInPage extends AppCompatActivity {
     EditText idET,otpEt;
     String vId,type;
+    String num;
     Button loginBtn,verifyBtn;
     TextView signUpTV;
     DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
@@ -55,7 +56,6 @@ public class CombineLogInPage extends AppCompatActivity {
         type=sharedPreferences.getString("UserType",null);
         //toast
         Toast.makeText(getBaseContext(),sharedPreferences.getString("UserType",null),Toast.LENGTH_LONG).show();
-
         //goto sign up activity
         signUpTV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,21 +68,32 @@ public class CombineLogInPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String prefix="+91";
-                String num=idET.getText().toString().trim();
+                num=idET.getText().toString().trim();
                 if(num.isEmpty()){
                     idET.setError("Enter mobile number ");
                     idET.requestFocus();
                     return;
                 }
                 num=prefix+num;
-                loginBtn.setVisibility(View.INVISIBLE);
-                signUpTV.setVisibility(View.INVISIBLE);
-                otpEt.setVisibility(View.VISIBLE);
-                verifyBtn.setVisibility(View.VISIBLE);
-                idET.setInputType(InputType.TYPE_NULL);
 
-                sendOtp(num);
-
+                ////////////////////////////////////
+                Query query=mdb.child("user").child(type).orderByChild("num").equalTo(num);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        //Toast.makeText(getApplicationContext(),""+dataSnapshot.getChildrenCount(),Toast.LENGTH_SHORT).show();
+                        if(dataSnapshot.getChildrenCount()==0){
+                            idET.setError("Enter valid mobile number ");
+                            idET.requestFocus();
+                        }else {
+                            sendOtp(num);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+                ///////////////////////////////////
             }
         });
 
@@ -104,6 +115,14 @@ public class CombineLogInPage extends AppCompatActivity {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(phonenumber,120, TimeUnit.SECONDS,
                 TaskExecutors.MAIN_THREAD,
                 mCallBack);
+        Toast.makeText(getApplicationContext(),"OTP sent to "+idET.getText().toString(),Toast.LENGTH_LONG).show();
+        loginBtn.setVisibility(View.INVISIBLE);
+        signUpTV.setVisibility(View.INVISIBLE);
+        otpEt.setVisibility(View.VISIBLE);
+        verifyBtn.setVisibility(View.VISIBLE);
+        idET.setInputType(InputType.TYPE_NULL);
+        idET.setClickable(false);
+        idET.setFocusableInTouchMode(false);
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBack=new
@@ -114,16 +133,13 @@ public class CombineLogInPage extends AppCompatActivity {
                     vId=s;
                     //Toast.makeText(getBaseContext(),"S : "+s,Toast.LENGTH_LONG).show();
                 }
-
                 @Override
                 public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-
                     String code=phoneAuthCredential.getSmsCode();
                     otpEt.setText(code);
                     if(code!=null)
                         verify(code);
                 }
-
                 @Override
                 public void onVerificationFailed(FirebaseException e) {
                     Toast.makeText(getBaseContext(),e.getMessage(),Toast.LENGTH_LONG).show();
@@ -140,7 +156,6 @@ public class CombineLogInPage extends AppCompatActivity {
             Toast.makeText(getBaseContext(),e.toString(),Toast.LENGTH_LONG).show();
             Log.i("exception",e.toString());
         }
-
     }
 
     private void signInwithCredential(PhoneAuthCredential credential) {
@@ -165,5 +180,4 @@ public class CombineLogInPage extends AppCompatActivity {
             }
         });
     }
-
 }

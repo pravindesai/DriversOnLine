@@ -21,12 +21,10 @@ public class splashscreen extends AppCompatActivity {
         getSupportActionBar().hide();
         LogoLauncher logoLauncher = new LogoLauncher();
         logoLauncher.start();
-
     }
 
     private class LogoLauncher extends Thread{
-        private static final int SLEEP_TIMER = 3;
-
+        private static final int SLEEP_TIMER = 5;
         public void run(){
             try{
                 sleep(1000 * SLEEP_TIMER);
@@ -43,5 +41,4 @@ public class splashscreen extends AppCompatActivity {
             }
         }
     }
-
 }
