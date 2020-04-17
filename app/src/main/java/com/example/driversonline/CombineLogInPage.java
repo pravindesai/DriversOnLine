@@ -30,7 +30,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
-
 public class CombineLogInPage extends AppCompatActivity {
     EditText idET,otpEt;
     String vId,type;
@@ -40,10 +39,13 @@ public class CombineLogInPage extends AppCompatActivity {
     DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
     SharedPreferences sharedPreferences;
+    progress progress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_combine_log_in_page);
+        progress=new progress(this);
+
 
         idET=findViewById(R.id.idET);
         loginBtn=findViewById(R.id.loginBtn);
@@ -72,10 +74,11 @@ public class CombineLogInPage extends AppCompatActivity {
                 if(num.isEmpty()){
                     idET.setError("Enter mobile number ");
                     idET.requestFocus();
+                    progress.dissmiss();
                     return;
                 }
                 num=prefix+num;
-
+                progress.show();
                 ////////////////////////////////////
                 Query query=mdb.child("user").child(type).orderByChild("num").equalTo(num);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -85,6 +88,7 @@ public class CombineLogInPage extends AppCompatActivity {
                         if(dataSnapshot.getChildrenCount()==0){
                             idET.setError("Enter valid mobile number ");
                             idET.requestFocus();
+                            progress.dissmiss();
                         }else {
                             sendOtp(num);
                         }
@@ -104,8 +108,10 @@ public class CombineLogInPage extends AppCompatActivity {
                 if(code.isEmpty()){
                     otpEt.setError("enter code");
                     otpEt.requestFocus();
+                    progress.dissmiss();
                     return;
                 }
+                progress.show();
                 verify(code);
             }
         });
@@ -123,6 +129,8 @@ public class CombineLogInPage extends AppCompatActivity {
         idET.setInputType(InputType.TYPE_NULL);
         idET.setClickable(false);
         idET.setFocusableInTouchMode(false);
+
+        progress.dissmiss();
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBack=new
@@ -153,6 +161,7 @@ public class CombineLogInPage extends AppCompatActivity {
             signInwithCredential(credential);
         }
         catch (Exception e) {
+            progress.dissmiss();
             Toast.makeText(getBaseContext(),e.toString(),Toast.LENGTH_LONG).show();
             Log.i("exception",e.toString());
         }
@@ -172,9 +181,12 @@ public class CombineLogInPage extends AppCompatActivity {
                    Intent intent=new Intent(getBaseContext(),profileMainActivity.class);
                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                    startActivity(intent);
+                   progress.dissmiss();
                    finish();
                 }
                 else {
+                    otpEt.setError("Enter valid OTP");
+                    progress.dissmiss();
                     Toast.makeText(getBaseContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
                 }
             }

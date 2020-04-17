@@ -42,6 +42,7 @@ public class CombineSignUp extends AppCompatActivity {
     Button signUpBtn,verifyBtn;
     ViewStub viewStub;
     TextView textView;
+    progress progress;
 
     String vId;
     FirebaseAuth mAuth;
@@ -53,6 +54,7 @@ public class CombineSignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_combine_sign_up);
 
+        progress=new progress(this);
         sharedPreferences=getSharedPreferences("SHAREDPREFERECEFILE",MODE_PRIVATE);
         final SharedPreferences.Editor editor=sharedPreferences.edit();
         type=sharedPreferences.getString("UserType",null);
@@ -89,9 +91,11 @@ public class CombineSignUp extends AppCompatActivity {
                 if(num.isEmpty() || num.length()<10){
                     phoneNumberEt.setError("phone number required!");
                     phoneNumberEt.requestFocus();
+                    progress.dissmiss();
                     return;
                 }
                 num=prefix+num;
+                progress.show();
 ///////////////////////////////////////////////////
                 Query query=mdb.child("user");
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -102,6 +106,7 @@ public class CombineSignUp extends AppCompatActivity {
                             Toast.makeText(getBaseContext(),"\n User alreay exists",Toast.LENGTH_LONG).show();
                             phoneNumberEt.setError("User Already Exists.");
                             phoneNumberEt.requestFocus();
+                            progress.dissmiss();
                         }else {
                             //forward details from sign up page
                             //send otp[verify otp -- start  new activity]
@@ -125,8 +130,10 @@ public class CombineSignUp extends AppCompatActivity {
                if(code.isEmpty()){
                     otpEt.setError("enter code");
                     otpEt.requestFocus();
+                    progress.dissmiss();
                     return;
                 }
+               progress.show();
                 verify(code);
             }
         });
@@ -154,6 +161,7 @@ public class CombineSignUp extends AppCompatActivity {
                 }
         otpEt.setVisibility(View.VISIBLE);
         verifyBtn.setVisibility(View.VISIBLE);
+        progress.dissmiss();
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBack=new
@@ -189,6 +197,7 @@ public class CombineSignUp extends AppCompatActivity {
         catch (Exception e) {
             Toast.makeText(getBaseContext(),e.toString(),Toast.LENGTH_LONG).show();
             Log.i("exception",e.toString());
+            progress.dissmiss();
         }
 
     }
@@ -211,6 +220,8 @@ public class CombineSignUp extends AppCompatActivity {
 
                 }
                 else {
+                    otpEt.setError("Enter valid OTP");
+                    progress.dissmiss();
                     Toast.makeText(getBaseContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
                 }
             }
@@ -224,6 +235,7 @@ public class CombineSignUp extends AppCompatActivity {
         //start new activity
         Intent intent=new Intent(getBaseContext(),profileMainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        progress.dissmiss();
         startActivity(intent);
         finish();
     }
