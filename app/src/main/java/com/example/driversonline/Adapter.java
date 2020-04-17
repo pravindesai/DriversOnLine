@@ -41,6 +41,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
     private LayoutInflater layoutInflater;
+    progress progress;
     String id;
     List<user> data;
     List<booking> bdata;
@@ -56,22 +57,28 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
     public Adapter(HomeFragment context, List<user>data) {
         this.layoutInflater=LayoutInflater.from(context.getContext());
+        progress=new progress(context.getContext());
         this.data=data;
         sharedPreferences=context.getContext().getSharedPreferences("SHAREDPREFERECEFILE", Context.MODE_PRIVATE);
         editor =sharedPreferences.edit();
         type=sharedPreferences.getString("UserType",null);
         CurrentUserName=sharedPreferences.getString("CurrentUserName",null);
         CurrentUserCity=sharedPreferences.getString("CurrentUserCity",null);
+        editor.apply();
+        progress.show();
     }
 
     public Adapter(HomeFragment context, List<booking> bdata,int i) {
         this.layoutInflater=LayoutInflater.from(context.getContext());
+        progress=new progress(context.getContext());
         this.bdata=bdata;
         sharedPreferences=context.getContext().getSharedPreferences("SHAREDPREFERECEFILE", Context.MODE_PRIVATE);
         editor =sharedPreferences.edit();
         type=sharedPreferences.getString("UserType",null);
         CurrentUserName=sharedPreferences.getString("CurrentUserName",null);
         CurrentUserCity=sharedPreferences.getString("CurrentUserCity",null);
+        editor.apply();
+        progress.show();
         //Toast.makeText(context.getContext(),"Adapter.java booking constrructor",Toast.LENGTH_LONG).show();
     }
 
@@ -84,6 +91,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final viewHolder holder, final int position) {
+        progress.dissmiss();
         if(type.equals("Driver")){
              final booking b=bdata.get(position);
              final String startDate=b.startDate;
@@ -192,7 +200,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
                             booking updateBooking=new booking(b.startDate,b.endDate,b.Onum,b.Oname,b.Ocity,b.Dnum,Action);
                             mdb.child("booking").child(id).setValue(updateBooking);
                             //Toast.makeText(v.getContext(),id+"  Done",Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 }
