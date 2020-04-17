@@ -116,7 +116,7 @@ public class profileMainActivity extends AppCompatActivity {
                         SharedPreferences.Editor myEdit = sharedPreferences.edit();
                         myEdit.putString("CurrentUserName",u.name);
                         myEdit.putString("CurrentUserCity",u.city);
-                        myEdit.commit();
+                        myEdit.apply();
                     }
                 }
                 @Override

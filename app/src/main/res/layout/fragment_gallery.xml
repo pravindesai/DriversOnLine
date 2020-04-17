@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="70dp"
-                android:text="pravin_desai"
+                android:text=" "
                 android:textColor="#fff"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -79,7 +79,7 @@
                 android:layout_below="@+id/userTypeTv"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="shrirampur"
+                android:text=" "
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
@@ -90,7 +90,7 @@
                 android:layout_below="@+id/nameTv"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="Owner"
+                android:text=" "
                 android:textColor="#fff"
                 android:textSize="18sp" />
         </RelativeLayout>

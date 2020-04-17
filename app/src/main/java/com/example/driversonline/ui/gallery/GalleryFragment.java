@@ -27,9 +27,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import com.bumptech.glide.Glide;
 import com.example.driversonline.R;
 import com.example.driversonline.booking;
+import com.example.driversonline.progress;
 import com.example.driversonline.user;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -64,6 +66,7 @@ public class GalleryFragment extends Fragment {
     StorageReference storageRef = storage.getReferenceFromUrl("gs://driversonline-f306c.appspot.com");    //change the url according to your firebase app
     Bitmap bitmap;
     View root;
+    progress progress;
 
     private String type;
     user u;
@@ -86,6 +89,8 @@ public class GalleryFragment extends Fragment {
         pd=new ProgressDialog(root.getContext());
         pd.setMessage("Its loading....");
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress=new progress(root.getContext());
+        progress.show();
 
         Query query=db.child("user").child(type).orderByChild("num").equalTo(muser.getPhoneNumber());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -97,6 +102,7 @@ public class GalleryFragment extends Fragment {
                     nameTv.setText(u.name);
                     userTypeTv.setText(u.type);
                     cityTv.setText(u.city);
+                    progress.dissmiss();
                 }
             }
             @Override
