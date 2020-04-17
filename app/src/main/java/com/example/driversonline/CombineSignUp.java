@@ -91,19 +91,29 @@ public class CombineSignUp extends AppCompatActivity {
                     phoneNumberEt.requestFocus();
                     return;
                 }
-                    num=prefix+num;
-                    signUpBtn.setVisibility(View.INVISIBLE);
-                    nameEt.setInputType(InputType.TYPE_NULL);
-                    cityspinner.setClickable(false);
-                    cityspinner.setEnabled(false);
-                    phoneNumberEt.setInputType(InputType.TYPE_NULL);
-                    if(type.equals("Driver"))
-                        licenseEt.setInputType(InputType.TYPE_NULL);
-                    otpEt.setVisibility(View.VISIBLE);
-                    verifyBtn.setVisibility(View.VISIBLE);
+                num=prefix+num;
+///////////////////////////////////////////////////
+                Query query=mdb.child("user");
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.hasChild("Driver/"+num)||dataSnapshot.hasChild("Owner/"+num))
+                        {
+                            Toast.makeText(getBaseContext(),"\n User alreay exists",Toast.LENGTH_LONG).show();
+                            phoneNumberEt.setError("User Already Exists.");
+                            phoneNumberEt.requestFocus();
+                        }else {
+                            //forward details from sign up page
+                            //send otp[verify otp -- start  new activity]
+                            sendOtp(num);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+///////////////////////////////////////////////////
 
-                    //send otp[verify otp -- start  new activity]
-                    sendOtp(num);
             }
         });
 
@@ -126,6 +136,24 @@ public class CombineSignUp extends AppCompatActivity {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(phonenumber,120, TimeUnit.SECONDS,
                 TaskExecutors.MAIN_THREAD,
                 mCallBack);
+
+        signUpBtn.setVisibility(View.INVISIBLE);
+        nameEt.setInputType(InputType.TYPE_NULL);
+        nameEt.setClickable(false);
+        nameEt.setFocusableInTouchMode(false);
+        cityspinner.setClickable(false);
+        cityspinner.setEnabled(false);
+        phoneNumberEt.setInputType(InputType.TYPE_NULL);
+        phoneNumberEt.setClickable(false);
+        phoneNumberEt.setFocusableInTouchMode(false);
+        if(type.equals("Driver"))
+                {
+                    licenseEt.setInputType(InputType.TYPE_NULL);
+                    licenseEt.setClickable(false);
+                    licenseEt.setFocusableInTouchMode(false);
+                }
+        otpEt.setVisibility(View.VISIBLE);
+        verifyBtn.setVisibility(View.VISIBLE);
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBack=new
@@ -155,7 +183,6 @@ public class CombineSignUp extends AppCompatActivity {
     private void verify(String code){
 
         try {
-
             PhoneAuthCredential credential=PhoneAuthProvider.getCredential(vId,code);
             signInwithCredential(credential);
         }
@@ -172,35 +199,16 @@ public class CombineSignUp extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     //Toast.makeText(getBaseContext(),"Task Successful.."+type,Toast.LENGTH_LONG).show();
-
                     //check user already exists or not
-                    Query query=null;
-                    query=mdb.child("user").child(type).orderByChild("num").equalTo(num);
-                    query.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists()){
-                                Toast.makeText(getBaseContext(),"User alreay exists",Toast.LENGTH_LONG).show();
-                                phoneNumberEt.setError("User Already Exists.");
-                                phoneNumberEt.requestFocus();
-                                return;
-                            }else{
-                                //forward details from sign up page
-                                //number already taken
-                                String name=nameEt.getText().toString().trim();
-                                String UserType=type;
-                                String city=cityspinner.getSelectedItem().toString();
-                                String lno="";
-                                if(type.equals("Driver"))
-                                    lno=licenseEt.getText().toString().trim();
-                                addnewUser(num,name,city,UserType,lno);
-                            }
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                    //Query query=mdb.child("user").child(type).orderByChild("num").equalTo(num);
+                    String name=nameEt.getText().toString().trim();
+                    String UserType=type;
+                    String city=cityspinner.getSelectedItem().toString();
+                    String lno="";
+                    if(type.equals("Driver"))
+                        lno=licenseEt.getText().toString().trim();
+                    addnewUser(num,name,city,UserType,lno);
 
-                        }
-                    });
                 }
                 else {
                     Toast.makeText(getBaseContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();

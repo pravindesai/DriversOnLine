@@ -31,7 +31,7 @@ public class splashscreen extends AppCompatActivity {
             }catch(InterruptedException e){
                 e.printStackTrace();
             }
-            if(muser!=null){
+            if(mAuth.getCurrentUser()!=null){
                 startActivity(new Intent(getBaseContext(),profileMainActivity.class));
                 finish();
             }else {

@@ -156,8 +156,9 @@ public class profileMainActivity extends AppCompatActivity {
         builder.setPositiveButton("CONFIRM", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getBaseContext(),"CONFIREMED",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(),"CONFIRMED",Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
+                sharedPreferences.edit().clear().apply();
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 finishAffinity();
             }
