@@ -9,4 +9,8 @@
     <color name="c2">#021250</color>
     <color name="c3">#AF0261</color>
 
+    <color name="red">#F3FF0303</color>
+
+    <color name="linkcolor">#2020EE</color>
+
 </resources>

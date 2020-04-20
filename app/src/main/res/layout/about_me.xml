@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+
+        android:id="@+id/devpic"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/header_cover_image"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:padding="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/man"
+        app:civ_border_color="#FFFFFFFF"
+        app:civ_border_width="3dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/devpic"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/pacifico"
+        android:gravity="center"
+        android:text="Pravin Desai"
+        android:textColor="@color/red"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView8"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        tools:layout_editor_absoluteY="266dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/bigshot_one"
+        android:gravity="center"
+        android:text="Follow me On Github"
+        android:textColorLink="#00E74848"
+        app:layout_constraintEnd_toEndOf="@+id/gittv"
+        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintStart_toStartOf="@+id/gittv"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/gittv"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/aclonica"
+        android:gravity="center"
+        android:text="https://github.com/pravindesai/"
+        android:textColor="@color/linkcolor"
+        app:layout_constraintEnd_toEndOf="@+id/textView12"
+        app:layout_constraintHorizontal_bias="0.617"
+        app:layout_constraintStart_toStartOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/bigshot_one"
+        android:gravity="center"
+        android:text="Drop me a mail"
+        app:layout_constraintEnd_toEndOf="@+id/mailtv"
+        app:layout_constraintStart_toStartOf="@+id/mailtv"
+        tools:layout_editor_absoluteY="453dp" />
+
+    <TextView
+        android:id="@+id/mailtv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/aclonica"
+        android:gravity="center"
+        android:text="pravindesai100@gmail.com"
+        android:textColor="@color/linkcolor"
+        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/bigshot_one"
+        android:gravity="center"
+        android:text="Follow me on insta"
+        app:layout_constraintEnd_toEndOf="@+id/instatv"
+        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintStart_toStartOf="@+id/instatv"
+        app:layout_constraintTop_toBottomOf="@+id/mailtv" />
+
+    <TextView
+        android:id="@+id/instatv"
+        android:layout_width="283dp"
+        android:layout_height="56dp"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/aclonica"
+        android:gravity="center"
+        android:text="https://www.instagram.com/pravindesai__/"
+        android:textColor="@color/linkcolor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        tools:layout_editor_absoluteX="70dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="62dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:contentDescription="TODO"
+        android:src="@drawable/likeimg" />
+
+
+</LinearLayout>

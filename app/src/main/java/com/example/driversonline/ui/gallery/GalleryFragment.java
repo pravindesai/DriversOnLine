@@ -17,21 +17,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import com.bumptech.glide.Glide;
 import com.example.driversonline.R;
-import com.example.driversonline.booking;
 import com.example.driversonline.progress;
 import com.example.driversonline.user;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,13 +38,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
@@ -82,7 +72,7 @@ public class GalleryFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_gallery, container, false);
 
         editBtn=root.findViewById(R.id.editBtn);
-        profilepic=root.findViewById(R.id.profilepic);
+        profilepic=root.findViewById(R.id.devpic);
         nameTv=root.findViewById(R.id.nameTv);
         cityTv=root.findViewById(R.id.cityTv);
         userTypeTv=root.findViewById(R.id.userTypeTv);

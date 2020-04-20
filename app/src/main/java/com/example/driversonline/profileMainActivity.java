@@ -1,5 +1,6 @@
 package com.example.driversonline;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -180,5 +182,16 @@ public class profileMainActivity extends AppCompatActivity {
                 "at: https://play.google.com/store/apps/details?id=" +getPackageName());
         sendIntent.setType("text/plain");
         startActivity(sendIntent);
+    }
+
+    public void showMyInfo(MenuItem item) {
+       // final about_me me=new about_me(getBaseContext());
+        try{
+            about_me about_me=new about_me(profileMainActivity.this);
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+        }
+
+
     }
 }
