@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -29,7 +29,6 @@
                 android:id="@+id/imageView"
                 android:layout_width="100dp"
                 android:layout_height="125dp"
-                android:layout_marginStart="3dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="3dp"
                 android:background="@drawable/customborder"
@@ -39,15 +38,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
-                tools:srcCompat="@mipmap/ic_launcher_car"/>
+                tools:srcCompat="@mipmap/ic_launcher_car" />
 
             <TextView
                 android:id="@+id/nameTv"
                 android:layout_width="200dp"
                 android:layout_height="21dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="5dp"
                 android:text="TextView"
+                android:gravity="left"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.555"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -58,8 +57,8 @@
                 android:layout_width="200dp"
                 android:layout_height="21dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginEnd="5dp"
                 android:text="TextView"
+                android:gravity="left"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/nameTv" />
@@ -68,41 +67,44 @@
                 android:id="@+id/detailsTv"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:gravity="center"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:gravity="center"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.33"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
             <RatingBar
                 android:id="@+id/ratingBar"
                 style="@android:style/Widget.DeviceDefault.RatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="5dp"
-                android:numStars="5"
+                android:layout_width="235dp"
+                android:layout_height="41dp"
+                android:layout_gravity="left"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
                 android:max="5"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
+                android:numStars="5"
+                android:scaleX="0.4"
+                android:scaleY="0.4"
                 android:stepSize="1"
-                android:transformPivotX="10dp"
-                android:transformPivotY="15dp"
+                android:transformPivotX="25dp"
+                android:transformPivotY="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.722"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/cityTv" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -112,19 +114,23 @@
                     android:id="@+id/Btn1"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:layout_weight="1"
-                    android:text="CALL"
+                    android:layout_marginRight="1dp"
                     android:layout_marginBottom="2sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_styl"
+                    android:text="CALL"
                     android:textSize="10sp" />
 
                 <Button
                     android:id="@+id/Btn2"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginBottom="2sp"
                     android:layout_weight="1"
+                    android:background="@drawable/btn_styl"
                     android:padding="10dp"
                     android:text="BOOK"
-                    android:layout_marginBottom="2sp"
                     android:textSize="10sp" />
             </LinearLayout>
 
@@ -132,4 +138,4 @@
 
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
