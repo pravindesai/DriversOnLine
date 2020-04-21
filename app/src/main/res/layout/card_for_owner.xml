@@ -10,13 +10,12 @@
     android:orientation="vertical">
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="386dp"
-        android:layout_height="212dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,14 +30,16 @@
                 android:layout_height="125dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="3dp"
-                android:background="@drawable/customborder"
+                android:background="@drawable/cust_square_border"
                 app:layout_constraintBottom_toTopOf="@+id/detailsTv"
                 app:layout_constraintEnd_toStartOf="@+id/nameTv"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
-                tools:srcCompat="@mipmap/ic_launcher_car" />
+                app:layout_constraintHorizontal_bias="0.0"
+                tools:srcCompat="@mipmap/ic_launcher_car"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"/>
 
             <TextView
                 android:id="@+id/nameTv"
@@ -72,6 +73,7 @@
                 android:layout_marginEnd="16dp"
                 android:gravity="center"
                 android:text="TextView"
+                android:fontFamily="@font/coda"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -114,24 +116,29 @@
                     android:id="@+id/Btn1"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:layout_marginRight="1dp"
+                    android:layout_marginRight="4dp"
                     android:layout_marginBottom="2sp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_styl"
+                    android:padding="10dp"
                     android:text="CALL"
-                    android:textSize="10sp" />
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/Btn2"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:layout_marginLeft="1dp"
+                    android:layout_marginLeft="4dp"
                     android:layout_marginBottom="2sp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_styl"
                     android:padding="10dp"
                     android:text="BOOK"
-                    android:textSize="10sp" />
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

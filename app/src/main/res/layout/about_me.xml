@@ -7,6 +7,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:padding="10dp"
+    android:background="@drawable/cust_square_border"
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -26,7 +27,7 @@
         android:padding="20dp"
         android:scaleType="centerCrop"
         android:src="@drawable/man"
-        app:civ_border_color="#FFFFFFFF"
+        app:civ_border_color="@color/r5"
         app:civ_border_width="3dp"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
         app:layout_constraintHorizontal_bias="0.647"
@@ -52,13 +53,27 @@
         tools:layout_editor_absoluteY="266dp" />
 
     <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/coda"
+        android:gravity="center"
+        android:text="[ indie developer ]"
+        android:textColorLink="#00E74848"
+        android:textSize="8sp" />
+
+    <TextView
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:fontFamily="@font/bigshot_one"
         android:gravity="center"
-        android:text="Follow me On Github"
+        android:text="Fork me On Github"
         android:textColorLink="#00E74848"
         app:layout_constraintEnd_toEndOf="@+id/gittv"
         app:layout_constraintHorizontal_bias="0.363"
@@ -68,7 +83,7 @@
     <TextView
         android:id="@+id/gittv"
         android:layout_width="match_parent"
-        android:layout_height="37dp"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
@@ -83,7 +98,11 @@
         android:id="@+id/textView12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:fontFamily="@font/bigshot_one"
         android:gravity="center"
         android:text="Drop me a mail"
@@ -108,7 +127,11 @@
         android:id="@+id/textView14"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:fontFamily="@font/bigshot_one"
         android:gravity="center"
         android:text="Follow me on insta"
@@ -120,7 +143,7 @@
     <TextView
         android:id="@+id/instatv"
         android:layout_width="283dp"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
@@ -134,7 +157,9 @@
         android:id="@+id/imageView"
         android:layout_width="62dp"
         android:layout_height="39dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/cust_square_border"
         android:clickable="true"
         android:contentDescription="TODO"
         android:src="@drawable/likeimg" />

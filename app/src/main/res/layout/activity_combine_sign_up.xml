@@ -51,6 +51,7 @@
         android:fontFamily="@font/pacifico"
         android:gravity="center"
         android:text="You want Driver?\nSign up here.."
+        android:textColor="@color/r14"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/nameET"
         app:layout_constraintEnd_toEndOf="parent"
