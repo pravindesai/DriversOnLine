@@ -89,6 +89,7 @@ public class HomeFragment extends Fragment {
                         if(b.Action.equals("None")){
                             bookings.add(b);
                             adapter.notifyDataSetChanged();
+
                         }
                     }
                 }

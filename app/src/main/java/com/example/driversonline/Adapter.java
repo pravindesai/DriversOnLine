@@ -41,6 +41,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
     private LayoutInflater layoutInflater;
+    Context c;
     progress progress;
     String id;
     List<user> data;
@@ -58,6 +59,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
     public Adapter(HomeFragment context, List<user>data) {
         this.layoutInflater=LayoutInflater.from(context.getContext());
         progress=new progress(context.getContext());
+        c=context.getContext();
         this.data=data;
         sharedPreferences=context.getContext().getSharedPreferences("SHAREDPREFERECEFILE", Context.MODE_PRIVATE);
         editor =sharedPreferences.edit();
@@ -71,6 +73,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
     public Adapter(HomeFragment context, List<booking> bdata,int i) {
         this.layoutInflater=LayoutInflater.from(context.getContext());
         progress=new progress(context.getContext());
+        c=context.getContext();
         this.bdata=bdata;
         sharedPreferences=context.getContext().getSharedPreferences("SHAREDPREFERECEFILE", Context.MODE_PRIVATE);
         editor =sharedPreferences.edit();
@@ -212,14 +215,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
     @Override
     public int getItemCount() {
+        int size=0;
         if(type.equals("Driver")){
-                return bdata.size();
+            size=bdata.size();
         }else if(type.equals("Owner")){
-            return data.size();
-        }else {
-            return 3;
+            size=data.size();
         }
-
+        return size;
     }
 
     public class viewHolder extends RecyclerView.ViewHolder{
