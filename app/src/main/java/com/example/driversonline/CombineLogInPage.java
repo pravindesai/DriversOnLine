@@ -128,7 +128,9 @@ public class CombineLogInPage extends AppCompatActivity {
         verifyBtn.setVisibility(View.VISIBLE);
         idET.setInputType(InputType.TYPE_NULL);
         idET.setClickable(false);
+        idET.setClickable(false);
         idET.setFocusableInTouchMode(false);
+        otpEt.requestFocus();
 
         progress.dissmiss();
     }

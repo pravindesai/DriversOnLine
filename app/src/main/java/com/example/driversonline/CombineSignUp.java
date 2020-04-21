@@ -161,6 +161,7 @@ public class CombineSignUp extends AppCompatActivity {
                 }
         otpEt.setVisibility(View.VISIBLE);
         verifyBtn.setVisibility(View.VISIBLE);
+        otpEt.requestFocus();
         progress.dissmiss();
     }
 
