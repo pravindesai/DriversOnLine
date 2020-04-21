@@ -10,7 +10,23 @@
     <color name="c3">#AF0261</color>
 
     <color name="red">#F3FF0303</color>
-
     <color name="linkcolor">#2020EE</color>
+
+    <color name="r1">#FFEBEE</color>
+    <color name="r2">#FFCDD2</color>
+    <color name="r3">#EF9A9A</color>
+    <color name="r4">#E57373</color>
+    <color name="r5">#EF5350</color>
+    <color name="r6">#F44336</color>
+    <color name="r7">#E53935</color>
+    <color name="r8">#D32F2F</color>
+    <color name="r9">#C62828</color>
+    <color name="r10">#B71C1C</color>
+    <color name="r11">#FF8A80</color>
+    <color name="r12">#FF5252</color>
+    <color name="r13">#FF1744</color>
+    <color name="r14">#D50000</color>
+
+
 
 </resources>
