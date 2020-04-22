@@ -1,6 +1,8 @@
 package com.example.driversonline;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -8,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +56,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
     DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
     FirebaseStorage storage = FirebaseStorage.getInstance();
+    AlertDialog alertDialog;
     StorageReference storageRef = storage.getReferenceFromUrl("gs://driversonline-f306c.appspot.com");    //change the url according to your firebase app
 
 
@@ -95,6 +99,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final viewHolder holder, final int position) {
         progress.dissmiss();
+        try {
+            alertDialog.dismiss();
+        }catch (Exception e){
+            Log.wtf("SOMETHING WENT WRONG IN ADAPTER","SOMETHING WENT WRONG IN ADAPTER");
+        }
         if(type.equals("Driver")){
              final booking b=bdata.get(position);
              final String startDate=b.startDate;
@@ -222,6 +231,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             size=data.size();
         }
         return size;
+    }
+
+    public void dismissProgressBar(){
+        progress.dissmiss();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(c);
+        alertDialogBuilder.setMessage("No requests found !");
+         alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     public class viewHolder extends RecyclerView.ViewHolder{

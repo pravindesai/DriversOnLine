@@ -43,6 +43,7 @@ public class HomeFragment extends Fragment {
     private FirebaseAuth mAuth=FirebaseAuth.getInstance();
     private FirebaseUser muser=mAuth.getCurrentUser();
     private String type;
+    int flag=0;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -79,6 +80,7 @@ public class HomeFragment extends Fragment {
     private void getListForDriver(){
         bookings.clear();
         Query query= db.child("booking").orderByChild("Dnum").equalTo(muser.getPhoneNumber());
+
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -89,8 +91,12 @@ public class HomeFragment extends Fragment {
                         if(b.Action.equals("None")){
                             bookings.add(b);
                             adapter.notifyDataSetChanged();
-
+                            flag=1;
                         }
+                    }
+                    if (flag==0){
+                        Toast.makeText(getContext(),"No data available ",Toast.LENGTH_SHORT).show();
+                        adapter.dismissProgressBar();
                     }
                 }
             }
@@ -108,7 +114,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    //Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"snap exists"+dataSnapshot.getChildrenCount(),Toast.LENGTH_SHORT).show();
                     for(DataSnapshot snap:dataSnapshot.getChildren()){
                         users.add(snap.getValue(user.class));
                         adapter.notifyDataSetChanged();
