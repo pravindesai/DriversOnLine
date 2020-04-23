@@ -114,7 +114,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    Toast.makeText(getContext(),"snap exists"+dataSnapshot.getChildrenCount(),Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(),"snap exists"+dataSnapshot.getChildrenCount(),Toast.LENGTH_SHORT).show();
                     for(DataSnapshot snap:dataSnapshot.getChildren()){
                         users.add(snap.getValue(user.class));
                         adapter.notifyDataSetChanged();
