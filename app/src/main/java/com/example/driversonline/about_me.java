@@ -29,7 +29,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class about_me {
     CircleImageView devpic;
     ImageView imageView;
-    TextView gittv,mailtv,instatv;
+    ImageView gittv,mailtv,instatv;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReferenceFromUrl("gs://driversonline-f306c.appspot.com");    //change the url according to your firebase app
     Bitmap bitmap;

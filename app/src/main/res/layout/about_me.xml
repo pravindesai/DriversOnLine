@@ -5,20 +5,16 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:gravity="center"
-    android:padding="10dp"
     android:background="@drawable/cust_square_border"
-    android:orientation="vertical">
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
 
         android:id="@+id/devpic"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_below="@+id/header_cover_image"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:layout_marginTop="24dp"
@@ -29,14 +25,11 @@
         android:src="@drawable/man"
         app:civ_border_color="@color/r5"
         app:civ_border_width="3dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView6"
-        app:layout_constraintHorizontal_bias="0.647"
-        app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="match_parent"
+        android:layout_width="248dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/devpic"
         android:layout_alignParentStart="true"
@@ -48,111 +41,143 @@
         android:text="Pravin Desai"
         android:textColor="@color/red"
         android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView8"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
         tools:layout_editor_absoluteY="266dp" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/coda"
         android:gravity="center"
         android:text="[ indie developer ]"
         android:textColorLink="#00E74848"
         android:textSize="8sp" />
 
-    <TextView
-        android:id="@+id/textView8"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+        android:gravity="center|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/bigshot_one"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:text="Fork me on github"
+            tools:layout_editor_absoluteY="453dp" />
+
+        <ImageView
+            android:id="@+id/gittv"
+            android:layout_width="95dp"
+            android:layout_height="35dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/aclonica"
+            android:gravity="center"
+            android:src="@drawable/github"
+            android:textColor="@color/linkcolor" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:fontFamily="@font/bigshot_one"
-        android:gravity="center"
-        android:text="Fork me On Github"
-        android:textColorLink="#00E74848"
-        app:layout_constraintEnd_toEndOf="@+id/gittv"
-        app:layout_constraintHorizontal_bias="0.363"
-        app:layout_constraintStart_toStartOf="@+id/gittv"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+        android:gravity="center|center_vertical"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/gittv"
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/bigshot_one"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:text="Drop me a mail"
+            tools:layout_editor_absoluteY="453dp" />
+
+        <ImageView
+            android:id="@+id/mailtv"
+            android:layout_width="95dp"
+            android:layout_height="35dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/aclonica"
+            android:gravity="center"
+            android:src="@drawable/gmail"
+            android:textColor="@color/linkcolor" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:fontFamily="@font/aclonica"
-        android:gravity="center"
-        android:text="https://github.com/pravindesai/"
-        android:textColor="@color/linkcolor"
-        app:layout_constraintEnd_toEndOf="@+id/textView12"
-        app:layout_constraintHorizontal_bias="0.617"
-        app:layout_constraintStart_toStartOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+        android:gravity="center|center_vertical"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView12"
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/bigshot_one"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:text="Follow me on insta"
+            app:layout_constraintEnd_toEndOf="@+id/instatv"
+            app:layout_constraintHorizontal_bias="0.549" />
+
+        <ImageView
+            android:id="@+id/instatv"
+            android:layout_width="95dp"
+            android:layout_height="35dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/aclonica"
+            android:gravity="center"
+            android:src="@drawable/instagram"
+            android:textColor="@color/linkcolor"
+            tools:layout_editor_absoluteX="70dp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/SplitLine_hor1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:fontFamily="@font/bigshot_one"
-        android:gravity="center"
-        android:text="Drop me a mail"
-        app:layout_constraintEnd_toEndOf="@+id/mailtv"
-        app:layout_constraintStart_toStartOf="@+id/mailtv"
-        tools:layout_editor_absoluteY="453dp" />
-
-    <TextView
-        android:id="@+id/mailtv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:fontFamily="@font/aclonica"
-        android:gravity="center"
-        android:text="pravindesai100@gmail.com"
-        android:textColor="@color/linkcolor"
-        app:layout_constraintEnd_toEndOf="@+id/textView14"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:fontFamily="@font/bigshot_one"
-        android:gravity="center"
-        android:text="Follow me on insta"
-        app:layout_constraintEnd_toEndOf="@+id/instatv"
-        app:layout_constraintHorizontal_bias="0.549"
-        app:layout_constraintStart_toStartOf="@+id/instatv"
-        app:layout_constraintTop_toBottomOf="@+id/mailtv" />
-
-    <TextView
-        android:id="@+id/instatv"
-        android:layout_width="283dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:fontFamily="@font/aclonica"
-        android:gravity="center"
-        android:text="https://www.instagram.com/pravindesai__/"
-        android:textColor="@color/linkcolor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
-        tools:layout_editor_absoluteX="70dp" />
-
+        android:layout_height= "2dp"
+        android:background="@color/r3" />
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="62dp"
