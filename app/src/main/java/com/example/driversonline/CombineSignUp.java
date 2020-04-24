@@ -2,17 +2,12 @@ package com.example.driversonline;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewStub;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -40,7 +35,6 @@ public class CombineSignUp extends AppCompatActivity {
     EditText nameEt,phoneNumberEt,otpEt,licenseEt;
     Spinner cityspinner;
     Button signUpBtn,verifyBtn;
-    ViewStub viewStub;
     TextView textView;
     progress progress;
 
@@ -59,7 +53,6 @@ public class CombineSignUp extends AppCompatActivity {
         final SharedPreferences.Editor editor=sharedPreferences.edit();
         type=sharedPreferences.getString("UserType",null);
 
-        viewStub=findViewById(R.id.viewStub);
         textView=findViewById(R.id.textView);
         nameEt=findViewById(R.id.nameET);
         phoneNumberEt=findViewById(R.id.phoneNumberEt);
@@ -77,9 +70,6 @@ public class CombineSignUp extends AppCompatActivity {
             //user is driver , inflate and replace view stub
             textView.setText("You can Drive?\nSign up here.");
             licenseEt.setVisibility(View.VISIBLE);
-            //viewStub.inflate();
-            //viewStub.setVisibility(View.VISIBLE);
-            //licenseEt=findViewById(R.id.licenseEt);
         }else{
             //user is owner keep view stub
         }
@@ -121,7 +111,6 @@ public class CombineSignUp extends AppCompatActivity {
                     }
                 });
 ///////////////////////////////////////////////////
-
             }
         });
 
