@@ -9,107 +9,140 @@
 
     <EditText
         android:id="@+id/nameET"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="232dp"
+        android:layout_margin="0dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/cityspinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
     <Spinner
         android:id="@+id/cityspinner"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_margin="0dp"
         android:entries="@array/cities"
         android:gravity="center_horizontal"
         android:scrollbarSize="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/phoneNumberEt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameET" />
 
-        <EditText
+    <EditText
         android:id="@+id/phoneNumberEt"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_margin="0dp"
         android:ems="10"
         android:hint="PhoneNumber"
         android:inputType="phone"
+        app:layout_constraintBottom_toTopOf="@+id/licenseEt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cityspinner" />
 
+    <EditText
+        android:id="@+id/licenseEt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:ems="10"
+        android:hint="enter license number"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/signUpBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumberEt" />
+
     <TextView
         android:id="@+id/textView"
-        android:layout_width="213dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pacifico"
         android:gravity="center"
         android:text="You want Driver?\nSign up here.."
         android:textColor="@color/r14"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/nameET"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.736" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/otpEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="0dp"
         android:ems="10"
         android:gravity="center_horizontal"
         android:hint="ENTER OTP"
         android:inputType="number"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/verifyBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.429"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpBtn"
-        app:layout_constraintVertical_bias="0.328" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toBottomOf="@+id/signUpBtn" />
 
     <Button
         android:id="@+id/signUpBtn"
-        android:layout_width="285dp"
+        android:layout_width="0dp"
         android:layout_height="44dp"
-        android:layout_marginTop="88dp"
+        android:layout_margin="0dp"
         android:background="@drawable/btn_styl"
         android:text="Sign Up"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumberEt" />
+        app:layout_constraintBottom_toTopOf="@+id/otpEt"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toBottomOf="@+id/licenseEt" />
 
     <Button
         android:id="@+id/verifyBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_margin="0dp"
+        android:layout_marginBottom="230dp"
         android:background="@drawable/btn_styl"
         android:text="verify"
         android:textColor="@color/white"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="@+id/guideline10"
+        app:layout_constraintTop_toBottomOf="@+id/otpEt" />
 
     <ViewStub
         android:id="@+id/viewStub"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
         android:layout="@layout/activity_combine_sign_up_driver"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:visibility="invisible" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.28" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.27737227" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.72749394" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

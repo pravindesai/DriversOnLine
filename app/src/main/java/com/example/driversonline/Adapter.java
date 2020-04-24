@@ -105,6 +105,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             Log.wtf("SOMETHING WENT WRONG IN ADAPTER","SOMETHING WENT WRONG IN ADAPTER");
         }
         if(type.equals("Driver")){
+            progress.dissmiss();
              final booking b=bdata.get(position);
              final String startDate=b.startDate;
              final String endDate=b.endDate;
@@ -144,6 +145,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             });
             update_img(holder,Onum);
         }else if(type.equals("Owner")){
+            progress.dissmiss();
             final user u=data.get(position);
             String num=u.num;
             String type=u.type;

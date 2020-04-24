@@ -67,6 +67,8 @@ public class CombineSignUp extends AppCompatActivity {
         signUpBtn=findViewById(R.id.signUpBtn);
         verifyBtn=findViewById(R.id.verifyBtn);
         otpEt=findViewById(R.id.otpEt);
+        licenseEt=findViewById(R.id.licenseEt);
+        licenseEt.setVisibility(View.INVISIBLE);
 
         mAuth=FirebaseAuth.getInstance();
 
@@ -74,9 +76,10 @@ public class CombineSignUp extends AppCompatActivity {
         if(sharedPreferences.getString("UserType",null).equals("Driver")){
             //user is driver , inflate and replace view stub
             textView.setText("You can Drive?\nSign up here.");
-            viewStub.inflate();
-            viewStub.setVisibility(View.VISIBLE);
-            licenseEt=findViewById(R.id.licenseEt);
+            licenseEt.setVisibility(View.VISIBLE);
+            //viewStub.inflate();
+            //viewStub.setVisibility(View.VISIBLE);
+            //licenseEt=findViewById(R.id.licenseEt);
         }else{
             //user is owner keep view stub
         }
