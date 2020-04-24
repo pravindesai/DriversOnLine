@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="@drawable/cust_square_border"
@@ -13,11 +13,9 @@
     <de.hdodenhof.circleimageview.CircleImageView
 
         android:id="@+id/devpic"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:layout_marginTop="24dp"
         android:clickable="true"
         android:elevation="10dp"
         android:padding="20dp"
@@ -25,42 +23,62 @@
         android:src="@drawable/man"
         app:civ_border_color="@color/r5"
         app:civ_border_width="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="248dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/devpic"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="5dp"
         android:fontFamily="@font/pacifico"
         android:gravity="center"
+        android:padding="5dp"
         android:text="Pravin Desai"
         android:textColor="@color/red"
-        android:textSize="36sp"
-        tools:layout_editor_absoluteY="266dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/devpic"
+        app:autoSizeMinTextSize="20sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"/>
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:fontFamily="@font/coda"
         android:gravity="center"
+        android:padding="5dp"
         android:text="[ indie developer ]"
         android:textColorLink="#00E74848"
-        android:textSize="8sp" />
+        android:textSize="8sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:foregroundGravity="center"
         android:gravity="center|center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9">
 
         <TextView
             android:id="@+id/textView18"
@@ -94,12 +112,18 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:foregroundGravity="center"
         android:gravity="center|center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
             android:id="@+id/textView12"
@@ -133,12 +157,18 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:foregroundGravity="center"
         android:gravity="center|center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/SplitLine_hor1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <TextView
             android:id="@+id/textView14"
@@ -176,18 +206,35 @@
     <View
         android:id="@+id/SplitLine_hor1"
         android:layout_width="match_parent"
-        android:layout_height= "2dp"
-        android:background="@color/r3" />
+        android:layout_height="2dp"
+        android:background="@color/r3"
+        android:padding="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        tools:layout_editor_absoluteX="10dp" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="62dp"
         android:layout_height="39dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_margin="10dp"
         android:background="@drawable/cust_square_border"
         android:clickable="true"
         android:contentDescription="TODO"
-        android:src="@drawable/likeimg" />
+        android:padding="5dp"
+        android:src="@drawable/likeimg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SplitLine_hor1" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="devpic"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="722dp" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

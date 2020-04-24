@@ -8,6 +8,7 @@
     android:background="@drawable/customborder"
     android:layout_margin="5dp"
     android:orientation="vertical">
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -30,54 +31,59 @@
                 android:layout_height="125dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="3dp"
+                android:adjustViewBounds="true"
                 android:background="@drawable/cust_square_border"
+                android:scaleType="centerInside"
                 app:layout_constraintBottom_toTopOf="@+id/detailsTv"
-                app:layout_constraintEnd_toStartOf="@+id/nameTv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
-                app:layout_constraintHorizontal_bias="0.0"
-                tools:srcCompat="@mipmap/ic_launcher_car"
-                android:scaleType="centerInside"
-                android:adjustViewBounds="true"/>
+                tools:srcCompat="@mipmap/ic_launcher_car" />
 
             <TextView
                 android:id="@+id/nameTv"
-                android:layout_width="200dp"
-                android:layout_height="21dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="16dp"
-                android:text="TextView"
                 android:gravity="left"
+                android:text="TextView"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/cityTv"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.555"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/cityTv"
-                android:layout_width="200dp"
-                android:layout_height="21dp"
-                android:layout_marginTop="12dp"
-                android:text="TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
                 android:gravity="left"
+                android:text="TextView"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/ratingBar"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/nameTv" />
+                app:layout_constraintTop_toBottomOf="@+id/nameTv"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/detailsTv"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/coda"
                 android:gravity="center"
                 android:text="TextView"
-                android:fontFamily="@font/coda"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
             <RatingBar
                 android:id="@+id/ratingBar"
@@ -85,7 +91,6 @@
                 android:layout_width="235dp"
                 android:layout_height="41dp"
                 android:layout_gravity="left"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
                 android:max="5"
                 android:numStars="5"
@@ -94,20 +99,21 @@
                 android:stepSize="1"
                 android:transformPivotX="25dp"
                 android:transformPivotY="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/detailsTv"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.722"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/cityTv" />
+                app:layout_constraintTop_toBottomOf="@+id/cityTv"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <LinearLayout
+                android:id="@+id/linearLayout4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginTop="3dp"
                 android:orientation="horizontal"
+                android:padding="3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detailsTv">
@@ -115,31 +121,43 @@
                 <Button
                     android:id="@+id/Btn1"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginRight="4dp"
-                    android:layout_marginBottom="2sp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_styl"
-                    android:padding="10dp"
                     android:text="CALL"
-                    android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/Btn2"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
-                    android:layout_marginBottom="2sp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_styl"
-                    android:padding="10dp"
                     android:text="BOOK"
-                    android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
             </LinearLayout>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="right"
+                app:constraint_referenced_ids="imageView"
+                tools:layout_editor_absoluteX="382dp" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="imageView,nameTv,cityTv,ratingBar"
+                tools:layout_editor_absoluteY="212dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
