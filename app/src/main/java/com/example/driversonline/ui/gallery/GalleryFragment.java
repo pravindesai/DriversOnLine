@@ -199,6 +199,8 @@ public class GalleryFragment extends Fragment {
             bitmap.recycle();
             bitmap=null;
         }
+        System.runFinalization();
+        Runtime.getRuntime().gc();
         //System.gc();
         super.onDestroy();
 

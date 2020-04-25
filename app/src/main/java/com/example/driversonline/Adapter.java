@@ -255,5 +255,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
         if(bitmap!=null){
             bitmap=null;
         }
+        System.gc();
     }
 }
