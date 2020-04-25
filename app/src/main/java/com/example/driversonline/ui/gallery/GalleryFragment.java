@@ -106,8 +106,7 @@ public class GalleryFragment extends Fragment {
             }
         });
         StorageReference pic = storageRef.child("Photos/").child(muser.getPhoneNumber()+".jpg");
-        pic.getBytes(1024 * 1024 )
-                .addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        pic.getBytes(1024 * 1024 ).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 //Toast.makeText(getContext(),"image loading Success",Toast.LENGTH_LONG).show();
@@ -193,5 +192,10 @@ public class GalleryFragment extends Fragment {
             Toast.makeText(root.getContext(), "Select an image", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

@@ -75,7 +75,7 @@
             <TextView
                 android:id="@+id/detailsTv"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:fontFamily="@font/coda"
                 android:gravity="center"
@@ -109,7 +109,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout4"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
                 android:layout_marginTop="3dp"
                 android:orientation="horizontal"
                 android:padding="3dp"
@@ -121,7 +121,7 @@
                 <Button
                     android:id="@+id/Btn1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginRight="4dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_styl"
@@ -133,7 +133,7 @@
                 <Button
                     android:id="@+id/Btn2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="4dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_styl"
