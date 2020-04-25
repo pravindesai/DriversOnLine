@@ -112,7 +112,8 @@ public class GalleryFragment extends Fragment {
                 //Toast.makeText(getContext(),"image loading Success",Toast.LENGTH_LONG).show();
                 bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 profilepic.setImageBitmap(bitmap);
-
+                bitmap.recycle();
+                bitmap=null;
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
