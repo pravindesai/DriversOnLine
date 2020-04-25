@@ -44,6 +44,9 @@ public class HomeFragment extends Fragment {
     private FirebaseUser muser=mAuth.getCurrentUser();
     private String type;
     int flag=0;
+    user u;
+    booking b;
+    Query query;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -79,7 +82,7 @@ public class HomeFragment extends Fragment {
         }
     private void getListForDriver(){
         bookings.clear();
-        Query query= db.child("booking").orderByChild("Dnum").equalTo(muser.getPhoneNumber());
+        query= db.child("booking").orderByChild("Dnum").equalTo(muser.getPhoneNumber());
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -87,7 +90,7 @@ public class HomeFragment extends Fragment {
                 if(dataSnapshot.exists()){
                     //Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
                     for(DataSnapshot snap:dataSnapshot.getChildren()){
-                        booking b=snap.getValue(booking.class);
+                        b=snap.getValue(booking.class);
                         if(b.Action.equals("None")){
                             bookings.add(b);
                             adapter.notifyDataSetChanged();
@@ -109,14 +112,15 @@ public class HomeFragment extends Fragment {
 
     private void getListForOwner(){
         users.clear();
-        Query query= db.child("user/Driver").orderByChild("num");
+         query= db.child("user/Driver").orderByChild("num");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     //Toast.makeText(getContext(),"snap exists"+dataSnapshot.getChildrenCount(),Toast.LENGTH_SHORT).show();
                     for(DataSnapshot snap:dataSnapshot.getChildren()){
-                        users.add(snap.getValue(user.class));
+                        u=snap.getValue(user.class);
+                        users.add(u);
                         adapter.notifyDataSetChanged();
                     }
                 }
@@ -125,5 +129,12 @@ public class HomeFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        //clear memory from adapter too
+        adapter.destroy();
+        super.onDestroy();
     }
 }

@@ -10,7 +10,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class splashscreen extends AppCompatActivity {
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
-    FirebaseUser muser=mAuth.getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

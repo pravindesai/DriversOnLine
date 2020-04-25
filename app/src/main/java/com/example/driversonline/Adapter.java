@@ -2,14 +2,11 @@ package com.example.driversonline;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +15,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.driversonline.ui.home.HomeFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,15 +27,9 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
 public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
     private LayoutInflater layoutInflater;
@@ -57,6 +46,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
     DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     AlertDialog alertDialog;
+    Bitmap bitmap;
     StorageReference storageRef = storage.getReferenceFromUrl("gs://driversonline-f306c.appspot.com");    //change the url according to your firebase app
 
 
@@ -178,14 +168,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
         }
     }
 
-    private void update_img(final viewHolder holder,String num) {
+    private void update_img(final viewHolder holder, final String num) {
         StorageReference pic = storageRef.child("Photos/").child(num+".jpg");
-        pic.getBytes(1024 * 1024  )
+        pic.getBytes(1024 * 1024)
                 .addOnSuccessListener(new OnSuccessListener<byte[]>() {
                     @Override
                     public void onSuccess(byte[] bytes) {
                         //Toast.makeText(getContext(),"inge loding Success",Toast.LENGTH_LONG).show();
-                        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                         holder.imageView.setImageBitmap(bitmap);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -258,6 +248,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             ratingBar=itemView.findViewById(R.id.ratingBar);
             Btn1=itemView.findViewById(R.id.Btn1);
             Btn2=itemView.findViewById(R.id.Btn2);
+        }
+    }
+
+    public void destroy(){
+        if(bitmap!=null){
+            bitmap=null;
         }
     }
 }

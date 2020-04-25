@@ -19,9 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-
 import com.example.driversonline.R;
 import com.example.driversonline.progress;
 import com.example.driversonline.user;
@@ -38,9 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.io.ByteArrayOutputStream;
-
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
 
@@ -49,9 +45,9 @@ public class GalleryFragment extends Fragment {
     ImageView editBtn;
     TextView nameTv,cityTv,userTypeTv;
     CircleImageView profilepic;
-    private DatabaseReference db= FirebaseDatabase.getInstance().getReference();
-    private FirebaseAuth mAuth=FirebaseAuth.getInstance();
-    private FirebaseUser muser=mAuth.getCurrentUser();
+    DatabaseReference db= FirebaseDatabase.getInstance().getReference();
+    FirebaseAuth mAuth=FirebaseAuth.getInstance();
+    FirebaseUser muser=mAuth.getCurrentUser();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReferenceFromUrl("gs://driversonline-f306c.appspot.com");    //change the url according to your firebase app
     Bitmap bitmap;
@@ -110,9 +106,10 @@ public class GalleryFragment extends Fragment {
             @Override
             public void onSuccess(byte[] bytes) {
                 //Toast.makeText(getContext(),"image loading Success",Toast.LENGTH_LONG).show();
+                //memory bound error
+
                 bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                     profilepic.setImageBitmap(bitmap);
-                    bitmap.recycle();
                     bitmap=null;
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -198,6 +195,13 @@ public class GalleryFragment extends Fragment {
     @Override
     public void onDestroy() {
         Toast.makeText(getContext(),"Destoyed",Toast.LENGTH_SHORT).show();
+        if(bitmap!=null){
+            bitmap.recycle();
+            bitmap=null;
+        }
+        //System.gc();
         super.onDestroy();
+
     }
+
 }

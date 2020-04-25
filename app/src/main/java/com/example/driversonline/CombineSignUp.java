@@ -37,12 +37,11 @@ public class CombineSignUp extends AppCompatActivity {
     Button signUpBtn,verifyBtn;
     TextView textView;
     progress progress;
-
     String vId;
     FirebaseAuth mAuth;
     SharedPreferences sharedPreferences;
     DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
-    String num,type;
+    String num,type,name,city,lno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +80,24 @@ public class CombineSignUp extends AppCompatActivity {
             public void onClick(View v) {
                 String prefix="+91";
                 num=phoneNumberEt.getText().toString().trim();
+                name=nameEt.getText().toString().trim();
+                city=cityspinner.getSelectedItem().toString();
+                String lno="";
+                if(name.isEmpty()){
+                    nameEt.requestFocus();
+                    nameEt.setError("Require");
+                    Toast.makeText(getBaseContext(),"name empty",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(type.equals("Driver")){
+                    lno=licenseEt.getText().toString().trim();
+                    if(lno.isEmpty()){
+                        licenseEt.requestFocus();
+                        licenseEt.setError("Require");
+                        return;
+                    }
+
+                }
                 if(num.isEmpty() || num.length()<10){
                     phoneNumberEt.setError("phone number required!");
                     phoneNumberEt.requestFocus();
@@ -203,12 +220,11 @@ public class CombineSignUp extends AppCompatActivity {
                     //Toast.makeText(getBaseContext(),"Task Successful.."+type,Toast.LENGTH_LONG).show();
                     //check user already exists or not
                     //Query query=mdb.child("user").child(type).orderByChild("num").equalTo(num);
-                    String name=nameEt.getText().toString().trim();
                     String UserType=type;
-                    String city=cityspinner.getSelectedItem().toString();
-                    String lno="";
-                    if(type.equals("Driver"))
-                        lno=licenseEt.getText().toString().trim();
+
+
+
+
                     addnewUser(num,name,city,UserType,lno);
 
                 }
@@ -231,5 +247,10 @@ public class CombineSignUp extends AppCompatActivity {
         progress.dissmiss();
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
