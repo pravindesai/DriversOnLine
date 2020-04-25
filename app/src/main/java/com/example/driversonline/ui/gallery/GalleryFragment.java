@@ -111,9 +111,9 @@ public class GalleryFragment extends Fragment {
             public void onSuccess(byte[] bytes) {
                 //Toast.makeText(getContext(),"image loading Success",Toast.LENGTH_LONG).show();
                 bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                profilepic.setImageBitmap(bitmap);
-                bitmap.recycle();
-                bitmap=null;
+                    profilepic.setImageBitmap(bitmap);
+                    bitmap.recycle();
+                    bitmap=null;
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -166,7 +166,7 @@ public class GalleryFragment extends Fragment {
 
     public void upload_image(){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 5, baos);
         byte[] data = baos.toByteArray();
 
         if(bitmap != null) {
@@ -197,6 +197,7 @@ public class GalleryFragment extends Fragment {
 
     @Override
     public void onDestroy() {
+        Toast.makeText(getContext(),"Destoyed",Toast.LENGTH_SHORT).show();
         super.onDestroy();
     }
 }
