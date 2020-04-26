@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SHAREDPREFERECEFILE", MODE_PRIVATE);
-        final SharedPreferences.Editor editor= sharedPreferences.edit();
+        //final SharedPreferences.Editor editor= sharedPreferences.edit();
         type= sharedPreferences.getString("UserType",null);
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
