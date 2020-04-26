@@ -170,7 +170,7 @@ public class GalleryFragment extends Fragment {
             pd.show();
             StorageReference childRef = storageRef.child("Photos/" +muser.getPhoneNumber()+".jpg");
             UploadTask uploadTask = childRef.putBytes(data);
-            Toast.makeText(root.getContext(),"function called \n"+filePath,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(root.getContext(),"function called \n"+filePath,Toast.LENGTH_SHORT).show();
 
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -194,7 +194,7 @@ public class GalleryFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        Toast.makeText(getContext(),"Destoyed",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"Destoyed",Toast.LENGTH_SHORT).show();
         if(bitmap!=null){
             bitmap.recycle();
             bitmap=null;

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class splashscreen extends AppCompatActivity {
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
@@ -22,7 +21,7 @@ public class splashscreen extends AppCompatActivity {
         logoLauncher.start();
     }
 
-    private class LogoLauncher extends Thread{
+    class LogoLauncher extends Thread{
         private static final int SLEEP_TIMER = 5;
         public void run(){
             try{

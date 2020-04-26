@@ -57,7 +57,7 @@ public class CombineLogInPage extends AppCompatActivity {
         final SharedPreferences.Editor editor=sharedPreferences.edit();
         type=sharedPreferences.getString("UserType",null);
         //toast
-        Toast.makeText(getBaseContext(),sharedPreferences.getString("UserType",null),Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(),sharedPreferences.getString("UserType",null),Toast.LENGTH_LONG).show();
         //goto sign up activity
         signUpTV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +152,7 @@ public class CombineLogInPage extends AppCompatActivity {
                 }
                 @Override
                 public void onVerificationFailed(FirebaseException e) {
-                    Toast.makeText(getBaseContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),"verification failed",Toast.LENGTH_LONG).show();
                 }
             };
 
@@ -164,7 +164,7 @@ public class CombineLogInPage extends AppCompatActivity {
         }
         catch (Exception e) {
             progress.dissmiss();
-            Toast.makeText(getBaseContext(),e.toString(),Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(),"something went wrong",Toast.LENGTH_LONG).show();
             Log.i("exception",e.toString());
         }
     }
@@ -189,7 +189,7 @@ public class CombineLogInPage extends AppCompatActivity {
                 else {
                     otpEt.setError("Enter valid OTP");
                     progress.dissmiss();
-                    Toast.makeText(getBaseContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getBaseContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
                 }
             }
         });

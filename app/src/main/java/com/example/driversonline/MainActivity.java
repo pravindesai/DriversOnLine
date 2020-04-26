@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference mdb=FirebaseDatabase.getInstance().getReference();
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
     FirebaseUser muser=mAuth.getCurrentUser();
-    String type;
+    //String type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkUserLogedIn() {
         muser=mAuth.getCurrentUser();
         //Toast.makeText(getBaseContext(),"checking.."+muser.getPhoneNumber(),Toast.LENGTH_SHORT).show();
-        if(muser!=null){
+        if(muser!=null){/*
             //Toast.makeText(getBaseContext(),"checking.."+muser.getPhoneNumber(),Toast.LENGTH_SHORT).show();
             //if user is driver start drivermainActivity or start ownermainActivuty
             Query query= mdb.child("user/Driver").orderByChild("num").equalTo(muser.getPhoneNumber());
@@ -72,12 +72,12 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                    if(dataSnapshot.exists()){
-                       Toast.makeText(getBaseContext(),"current user is Driver",Toast.LENGTH_SHORT).show();
+                       //Toast.makeText(getBaseContext(),"current user is Driver",Toast.LENGTH_SHORT).show();
                        //startActivity(new Intent(getBaseContext(),DriverMainActivity.class));
                        startActivity(new Intent(getBaseContext(),profileMainActivity.class));
                        finish();
                    }else{
-                       Toast.makeText(getBaseContext(),"current user is Owner",Toast.LENGTH_SHORT).show();
+                       //Toast.makeText(getBaseContext(),"current user is Owner",Toast.LENGTH_SHORT).show();
                        //startActivity(new Intent(getBaseContext(),OwnerMainActivity.class));
                        startActivity(new Intent(getBaseContext(),profileMainActivity.class));
                        finish();
@@ -86,9 +86,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                 }
-            });
+            });*/
+            startActivity(new Intent(getBaseContext(),profileMainActivity.class));
         }else{
-            Toast.makeText(getBaseContext(),"user null",Toast.LENGTH_LONG).show();
+            //stay on this activity
+            //Toast.makeText(getBaseContext(),"user null",Toast.LENGTH_LONG).show();
         }
     }
 }

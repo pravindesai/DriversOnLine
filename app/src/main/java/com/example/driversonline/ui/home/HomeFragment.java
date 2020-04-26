@@ -131,7 +131,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroy() {
         //clear memory from adapter too
-        Toast.makeText(getContext(),"List destroyed",Toast.LENGTH_LONG).show();
+        //Toast.makeText(getContext(),"List destroyed",Toast.LENGTH_LONG).show();
         adapter.destroy();
         bookings.clear();
         users.clear();

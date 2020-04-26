@@ -41,11 +41,11 @@ import static android.content.Context.MODE_PRIVATE;
 public class SlideshowFragment extends Fragment {
 
     public ArrayList<booking> bookings;
-    private DatabaseReference db= FirebaseDatabase.getInstance().getReference();
-    private FirebaseAuth mAuth=FirebaseAuth.getInstance();
-    private FirebaseUser muser=mAuth.getCurrentUser();
+     DatabaseReference db= FirebaseDatabase.getInstance().getReference();
+     FirebaseAuth mAuth=FirebaseAuth.getInstance();
+     FirebaseUser muser=mAuth.getCurrentUser();
     custome_booking_list_adapter customAdapter;
-    private String type;
+     String type;
     ListView listView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -55,7 +55,7 @@ public class SlideshowFragment extends Fragment {
         type= sharedPreferences.getString("UserType",null);
         final View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
         listView=root.findViewById(R.id.listView);
-        Toast.makeText(root.getContext(),"slideshow fragment",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(root.getContext(),"slideshow fragment",Toast.LENGTH_SHORT).show();
 
         bookings=new ArrayList<booking>();
         customAdapter = new custome_booking_list_adapter(root.getContext(), bookings);
@@ -134,5 +134,11 @@ public class SlideshowFragment extends Fragment {
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    @Override
+    public void onDestroy() {
+        bookings.clear();
+        super.onDestroy();
     }
 }

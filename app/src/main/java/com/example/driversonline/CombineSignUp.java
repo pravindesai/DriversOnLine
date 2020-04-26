@@ -86,7 +86,7 @@ public class CombineSignUp extends AppCompatActivity {
                 if(name.isEmpty()){
                     nameEt.requestFocus();
                     nameEt.setError("Require");
-                    Toast.makeText(getBaseContext(),"name empty",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getBaseContext(),"name empty",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(type.equals("Driver")){
@@ -113,7 +113,7 @@ public class CombineSignUp extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.hasChild("Driver/"+num)||dataSnapshot.hasChild("Owner/"+num))
                         {
-                            Toast.makeText(getBaseContext(),"\n User alreay exists",Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(),"\n User alreay exists",Toast.LENGTH_LONG).show();
                             phoneNumberEt.setError("User Already Exists.");
                             phoneNumberEt.requestFocus();
                             progress.dissmiss();
@@ -194,7 +194,7 @@ public class CombineSignUp extends AppCompatActivity {
 
                 @Override
                 public void onVerificationFailed(FirebaseException e) {
-                    Toast.makeText(getBaseContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),"verification failed",Toast.LENGTH_LONG).show();
                 }
             };
 
@@ -205,7 +205,7 @@ public class CombineSignUp extends AppCompatActivity {
             signInwithCredential(credential);
         }
         catch (Exception e) {
-            Toast.makeText(getBaseContext(),e.toString(),Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(),"Something went wrong",Toast.LENGTH_LONG).show();
             Log.i("exception",e.toString());
             progress.dissmiss();
         }
@@ -222,16 +222,13 @@ public class CombineSignUp extends AppCompatActivity {
                     //Query query=mdb.child("user").child(type).orderByChild("num").equalTo(num);
                     String UserType=type;
 
-
-
-
                     addnewUser(num,name,city,UserType,lno);
 
                 }
                 else {
                     otpEt.setError("Enter valid OTP");
                     progress.dissmiss();
-                    Toast.makeText(getBaseContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getBaseContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -240,7 +237,7 @@ public class CombineSignUp extends AppCompatActivity {
     public void addnewUser(String num,String name,String city,String type,String lno){
         user user=new user(num,name,city,type,lno);
         mdb.child("user").child(type).child(num).setValue(user);
-        Toast.makeText(getBaseContext(),"new user added",Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(),"new user added",Toast.LENGTH_LONG).show();
         //start new activity
         Intent intent=new Intent(getBaseContext(),profileMainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);

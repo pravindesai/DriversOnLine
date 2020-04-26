@@ -1,6 +1,5 @@
 package com.example.driversonline;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,8 +38,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class profileMainActivity extends AppCompatActivity {
-
-    private AppBarConfiguration mAppBarConfiguration;
+    about_me about_me;
+    AppBarConfiguration mAppBarConfiguration;
     public NavigationView navigationView;
     public DatabaseReference mdb= FirebaseDatabase.getInstance().getReference();
     public FirebaseAuth mAuth=FirebaseAuth.getInstance();
@@ -127,7 +125,7 @@ public class profileMainActivity extends AppCompatActivity {
             });
             showprofile();
         }else{
-            Toast.makeText(getBaseContext(),"user null",Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(),"user null",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -150,7 +148,7 @@ public class profileMainActivity extends AppCompatActivity {
     }
 
     public void logout(MenuItem item) {
-        Toast.makeText(getBaseContext(),"FINISH THIS ACTIVITY AFTER LOGOUT",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getBaseContext(),"FINISH THIS ACTIVITY AFTER LOGOUT",Toast.LENGTH_SHORT).show();
 
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
         builder.setTitle("LOG OUT");
@@ -158,7 +156,7 @@ public class profileMainActivity extends AppCompatActivity {
         builder.setPositiveButton("CONFIRM", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getBaseContext(),"CONFIRMED",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(),"CONFIRMED",Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
                 sharedPreferences.edit().clear().apply();
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
@@ -167,7 +165,7 @@ public class profileMainActivity extends AppCompatActivity {
         }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getBaseContext(),"CANCELLED",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(),"CANCELLED",Toast.LENGTH_SHORT).show();
             }
         });
         AlertDialog dialog=builder.create();
@@ -187,11 +185,18 @@ public class profileMainActivity extends AppCompatActivity {
     public void showMyInfo(MenuItem item) {
        // final about_me me=new about_me(getBaseContext());
         try{
-            about_me about_me=new about_me(profileMainActivity.this);
+            about_me=new about_me(profileMainActivity.this);
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_LONG).show();
         }
+    }
 
-
+    @Override
+    protected void onDestroy() {
+        about_me=null;
+        if(bitmap!=null){
+            bitmap=null;
+        }
+        super.onDestroy();
     }
 }

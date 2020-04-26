@@ -12,12 +12,10 @@ import com.example.driversonline.booking;
 import java.util.ArrayList;
 
 public class custome_booking_list_adapter extends BaseAdapter {
-    Context context;
     LayoutInflater inflter;
     public ArrayList<booking> bookings;
 
     public custome_booking_list_adapter(Context applicationContext, ArrayList<booking>bookings) {
-        this.context = context;
         this.bookings = bookings;
         inflter = (LayoutInflater.from(applicationContext));
     }
