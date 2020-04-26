@@ -31,10 +31,11 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
-
     private LayoutInflater layoutInflater;
     Context c;
     progress progress;
+    user u;
+    booking b;
     String id;
     List<user> data;
     List<booking> bdata;
@@ -96,7 +97,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
         }
         if(type.equals("Driver")){
             progress.dissmiss();
-             final booking b=bdata.get(position);
+             b=bdata.get(position);
              final String startDate=b.startDate;
              final String endDate=b.endDate;
              final String Onum=b.Onum;
@@ -136,7 +137,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             update_img(holder,Onum);
         }else if(type.equals("Owner")){
             progress.dissmiss();
-            final user u=data.get(position);
+            u=data.get(position);
             String num=u.num;
             String type=u.type;
             holder.nameTv.setText(u.name);
@@ -234,7 +235,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
     }
 
     public class viewHolder extends RecyclerView.ViewHolder{
-        ImageView imageView;
+      ImageView imageView;
         TextView nameTv,cityTv,detailsTv;
         RatingBar ratingBar;
         Button Btn1,Btn2;
@@ -255,6 +256,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
         if(bitmap!=null){
             bitmap=null;
         }
+        b=null;
+        u=null;
         System.gc();
     }
 }

@@ -1,18 +1,13 @@
 package com.example.driversonline.ui.home;
 
+import androidx.fragment.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,10 +42,11 @@ public class HomeFragment extends Fragment {
     user u;
     booking b;
     Query query;
+    SharedPreferences sharedPreferences;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("SHAREDPREFERECEFILE", MODE_PRIVATE);
+        sharedPreferences = getContext().getSharedPreferences("SHAREDPREFERECEFILE", MODE_PRIVATE);
         //final SharedPreferences.Editor editor= sharedPreferences.edit();
         type= sharedPreferences.getString("UserType",null);
 
@@ -137,6 +133,11 @@ public class HomeFragment extends Fragment {
         //clear memory from adapter too
         Toast.makeText(getContext(),"List destroyed",Toast.LENGTH_LONG).show();
         adapter.destroy();
+        bookings.clear();
+        users.clear();
+        u=null;
+        mAuth=null;
+        recyclerView.getRecycledViewPool().clear();
         System.runFinalization();
         Runtime.getRuntime().gc();
         super.onDestroy();
