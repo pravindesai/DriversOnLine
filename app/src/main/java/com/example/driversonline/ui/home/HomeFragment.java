@@ -86,7 +86,6 @@ public class HomeFragment extends Fragment {
                     //Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
                     for(DataSnapshot snap:dataSnapshot.getChildren()){
                         b=snap.getValue(booking.class);
-                        Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
                         if(b.Action.equals("None")){
                             bookings.add(b);
                             adapter.notifyDataSetChanged();
@@ -119,7 +118,12 @@ public class HomeFragment extends Fragment {
                         u=snap.getValue(user.class);
                         users.add(u);
                         adapter.notifyDataSetChanged();
+                        flag=1;
                     }
+                }
+                if (flag==0){
+                    Toast.makeText(getContext(),"No data available ",Toast.LENGTH_SHORT).show();
+                    adapter.dismissProgressBar();
                 }
 
             }
