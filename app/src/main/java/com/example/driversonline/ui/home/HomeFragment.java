@@ -35,13 +35,13 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class HomeFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    private Adapter adapter;
+    public RecyclerView recyclerView;
+    public Adapter adapter;
     public ArrayList<user> users;
     public ArrayList<booking> bookings;
-    private DatabaseReference db=FirebaseDatabase.getInstance().getReference();
-    private FirebaseAuth mAuth=FirebaseAuth.getInstance();
-    private FirebaseUser muser=mAuth.getCurrentUser();
+    public DatabaseReference db=FirebaseDatabase.getInstance().getReference();
+    public FirebaseAuth mAuth=FirebaseAuth.getInstance();
+    public FirebaseUser muser=mAuth.getCurrentUser();
     private String type;
     int flag=0;
     user u;
@@ -124,6 +124,7 @@ public class HomeFragment extends Fragment {
                         adapter.notifyDataSetChanged();
                     }
                 }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
