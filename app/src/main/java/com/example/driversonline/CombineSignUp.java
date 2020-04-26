@@ -82,7 +82,7 @@ public class CombineSignUp extends AppCompatActivity {
                 num=phoneNumberEt.getText().toString().trim();
                 name=nameEt.getText().toString().trim();
                 city=cityspinner.getSelectedItem().toString();
-                String lno="";
+                lno="";
                 if(name.isEmpty()){
                     nameEt.requestFocus();
                     nameEt.setError("Require");
@@ -220,9 +220,9 @@ public class CombineSignUp extends AppCompatActivity {
                     //Toast.makeText(getBaseContext(),"Task Successful.."+type,Toast.LENGTH_LONG).show();
                     //check user already exists or not
                     //Query query=mdb.child("user").child(type).orderByChild("num").equalTo(num);
-                    String UserType=type;
-
-                    addnewUser(num,name,city,UserType,lno);
+                    //String UserType=type;
+                    progress.dissmiss();
+                    addnewUser(num,name,city,type,lno);
 
                 }
                 else {

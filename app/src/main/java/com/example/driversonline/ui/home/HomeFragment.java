@@ -79,7 +79,6 @@ public class HomeFragment extends Fragment {
     private void getListForDriver(){
         bookings.clear();
         query= db.child("booking").orderByChild("Dnum").equalTo(muser.getPhoneNumber());
-
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -87,17 +86,19 @@ public class HomeFragment extends Fragment {
                     //Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
                     for(DataSnapshot snap:dataSnapshot.getChildren()){
                         b=snap.getValue(booking.class);
+                        Toast.makeText(getContext(),"snap exists",Toast.LENGTH_SHORT).show();
                         if(b.Action.equals("None")){
                             bookings.add(b);
                             adapter.notifyDataSetChanged();
                             flag=1;
                         }
                     }
-                    if (flag==0){
-                        Toast.makeText(getContext(),"No data available ",Toast.LENGTH_SHORT).show();
-                        adapter.dismissProgressBar();
-                    }
                 }
+                if (flag==0){
+                    Toast.makeText(getContext(),"No data available ",Toast.LENGTH_SHORT).show();
+                    adapter.dismissProgressBar();
+                }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

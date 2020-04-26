@@ -115,7 +115,7 @@ public class GalleryFragment extends Fragment {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(),"image loading failed\n"+e,Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(),"image loading failed\n"+e,Toast.LENGTH_LONG).show();
             }
         });
         return root;
