@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:667628696002:android:c20c3234fbecb146e3e65b",
         "android_client_info": {
-          "package_name": "com.example.driversonline"
+          "package_name": "com.driver.driversonline"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "667628696002-l67kvqe2tf04d78s79n7lclismt1sjv5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.driversonline",
+            "package_name": "com.driver.driversonline",
             "certificate_hash": "6deed8a9b0ea43fc51bd5c89a5ad1fd6f3d54218"
           }
         },
